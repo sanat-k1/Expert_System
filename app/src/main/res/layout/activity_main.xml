@@ -19,12 +19,13 @@
 
     <AutoCompleteTextView
         android:id="@+id/editText"
-        android:layout_width="400dp"
-        android:layout_height="0dp"
+        android:layout_width="262dp"
+        android:layout_height="59dp"
         android:layout_marginBottom="16dp"
-        android:text="Ask your question"
+        android:hint="Ask your question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -36,7 +37,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginEnd="13dp"
         android:layout_marginBottom="604dp"
-        android:src="@drawable/bot"
+        android:src="@drawable/giphy"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +48,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="274dp"
+        android:layout_marginEnd="242dp"
         android:layout_marginBottom="23dp"
         android:text="Sanat Good Boy"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="24dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
