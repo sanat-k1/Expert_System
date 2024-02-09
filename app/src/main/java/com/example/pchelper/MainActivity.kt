@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         var qbar : AutoCompleteTextView = findViewById(R.id.editText)
         var qadapter: ArrayAdapter<String> = ArrayAdapter<String>(this,android.R.layout.select_dialog_item,questions)
-        qbar.threshold = 1
+        qbar.threshold = 2
         qbar.setAdapter(qadapter)
 
         var db = getSharedPreferences("database",Context.MODE_PRIVATE)
