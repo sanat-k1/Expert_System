@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         qbar   = findViewById(R.id.editText)
         jif= findViewById(R.id.imageView)
 
-//        datalist = ArrayList()
+        datalist = ArrayList()
         var questions = arrayOf("GPU","CPU","RAM")
 
         var qadapter: ArrayAdapter<String> = ArrayAdapter<String>(this,android.R.layout.select_dialog_item,questions)
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
             .into(jif)
 
+//        making a gay button
         val colors = intArrayOf(
             ContextCompat.getColor(this, R.color.red),
             ContextCompat.getColor(this, R.color.green),
@@ -56,6 +57,12 @@ class MainActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.yellow)
         )
 
+//        while (true) {
+//            for (i in 0 until colors.size) {
+//                val color = colors[i]
+//                submit.setBackgroundColor(color)
+//            }
+//        }
 
 //        val lgbtlights  = AnimationUtils.loadAnimation(this,R.anim.lgbt)
 //        submit.startAnimation(lgbtlights)
