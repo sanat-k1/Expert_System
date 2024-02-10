@@ -45,9 +45,9 @@ class dbController(context: Context) :
         private const val CREATE_TABLE_GPU = "CREATE TABLE $TABLE_GPU (" +
                 "$GPU_ID INTEGER PRIMARY KEY," +
                 "$GPU_NAME TEXT," +
-                "$GPU_PRICE REAL," +
+                "$GPU_PRICE INTEGER," +
                 "$GPU_VRAM INTEGER," +
-                "$GPU_CLOCK_SPEED REAL," +
+                "$GPU_CLOCK_SPEED INTEGER," +
                 "$GPU_TIER INTEGER" +
                 ")"
     }
@@ -100,12 +100,12 @@ class dbController(context: Context) :
                     "(13, 'NVIDIA GeForce GTX 1660s', 18000, 6, 1785, 0), " +
                     "(14, 'NVIDIA GeForce GTX 1650', 12000, 4, 1710, 0), " +
                     "(15, 'NVIDIA GeForce GT 730', 5000, 2, 902, 0), " +
-                    "(16, 'AMD Radeon RX 7900 XTX', 120000, 24, 2620, 4), " +
-                    "(17, 'AMD Radeon RX 7900 XT', 100000, 20, 2130, 4), " +
-                    "(18, 'AMD Radeon RX 7800 XT', 60000, 16, 2430, 3), " +
+                    "(16, 'AMD Radeon RX 7900 XTX', 120000, 24, 2620, 3), " +
+                    "(17, 'AMD Radeon RX 7900 XT', 100000, 20, 2130, 3), " +
+                    "(18, 'AMD Radeon RX 7800 XT', 60000, 16, 2430, 2), " +
                     "(19, 'AMD Radeon RX 7700 XT', 50000, 12, 2584, 2), " +
-                    "(20, 'AMD Radeon RX 7600 XT', 35000, 16, 2799, 2), " +
-                    "(21, 'AMD Radeon RX 7600', 30000, 8, 2745, 2), " +
+                    "(20, 'AMD Radeon RX 7600 XT', 35000, 16, 2799, 1), " +
+                    "(21, 'AMD Radeon RX 7600', 30000, 8, 2745, 1), " +
                     "(22, 'AMD Radeon RX 6600', 20000, 8, 2491, 1), " +
                     "(23, 'AMD Radeon RX 6400', 12000, 4, 2325, 0) "
         )
