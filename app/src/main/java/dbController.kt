@@ -9,10 +9,8 @@ class dbController(context: Context) :
         private const val DATABASE_NAME = "my_database.db"
         private const val DATABASE_VERSION = 1
 
-        // Table name
+        // CPU table
         private const val TABLE_CPU = "cpu"
-
-        // Column names for CPU table
         private const val CPU_ID = "ID"
         private const val CPU_NAME = "CPU_name"
         private const val CPU_PRICE = "CPU_price"
@@ -21,6 +19,15 @@ class dbController(context: Context) :
         private const val CPU_MAX_CLOCK = "Max_clk"
         private const val CPU_CORES = "Cores"
         private const val CPU_THREADS = "Threads"
+
+        // GPU table
+        private const val TABLE_GPU = "gpu"
+        private const val GPU_ID = "ID"
+        private const val GPU_NAME = "GPU_name"
+        private const val GPU_PRICE = "GPU_price"
+        private const val GPU_VRAM = "VRAM"
+        private const val GPU_CLOCK_SPEED = "Clock_speed"
+        private const val GPU_TIER = "Tier"
 
         // SQL statement for creating CPU table
         private const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
@@ -33,11 +40,23 @@ class dbController(context: Context) :
                 "$CPU_CORES INTEGER," +
                 "$CPU_THREADS INTEGER" +
                 ")"
+
+        // SQL statement for creating CPU table
+        private const val CREATE_TABLE_GPU = "CREATE TABLE $TABLE_GPU (" +
+                "$GPU_ID INTEGER PRIMARY KEY," +
+                "$GPU_NAME TEXT," +
+                "$GPU_PRICE REAL," +
+                "$GPU_VRAM INTEGER," +
+                "$GPU_CLOCK_SPEED REAL," +
+                "$GPU_TIER INTEGER" +
+                ")"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         // Create CPU table
         db.execSQL(CREATE_TABLE_CPU)
+        db.execSQL(CREATE_TABLE_GPU)
+
 
         // Insert data into CPU table
         db.execSQL(
@@ -63,13 +82,41 @@ class dbController(context: Context) :
                     "(17, 'AMD Ryzen 5 5500', 10000, 0, 3.60, 4.20, 6, 12), " +
                     "(18, 'AMD Ryzen 5 3600', 8000, 0, 3.60, 4.20, 6, 12) "
         )
+        // Insert data into GPU table
+        db.execSQL(
+            "INSERT INTO $TABLE_GPU ($GPU_ID, $GPU_NAME, $GPU_PRICE, $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER) VALUES " +
+                    "(1, 'NVIDIA GeForce RTX 4090', 200000, 24, 2600, 3), " +
+                    "(2, 'NVIDIA GeForce RTX 3090', 150000, 24, 1695, 3), " +
+                    "(3, 'NVIDIA GeForce RTX 4080', 120000, 16, 2520, 3), " +
+                    "(4, 'NVIDIA GeForce RTX 3080', 110000, 10, 1710, 2), " +
+                    "(5, 'NVIDIA GeForce RTX 4070 Ti', 80000, 12, 1710, 2), " +
+                    "(6, 'NVIDIA GeForce RTX 3070 Ti', 70000, 8, 1830, 2), " +
+                    "(7, 'NVIDIA GeForce RTX 4070', 55000, 12, 2480, 2), " +
+                    "(8, 'NVIDIA GeForce RTX 3070', 40000, 8, 1725, 2), " +
+                    "(9, 'NVIDIA GeForce RTX 3060 Ti', 35000, 8, 1700, 1), " +
+                    "(10, 'NVIDIA GeForce RTX 4060', 30000, 8, 2505, 1), " +
+                    "(11, 'NVIDIA GeForce RTX 3060', 27000, 12, 1777, 1), " +
+                    "(12, 'NVIDIA GeForce RTX 3050', 22000, 8, 1450, 1), " +
+                    "(13, 'NVIDIA GeForce GTX 1660s', 18000, 6, 1785, 0), " +
+                    "(14, 'NVIDIA GeForce GTX 1650', 12000, 4, 1710, 0), " +
+                    "(15, 'NVIDIA GeForce GT 730', 5000, 2, 902, 0), " +
+                    "(16, 'AMD Radeon RX 7900 XTX', 120000, 24, 2620, 4), " +
+                    "(17, 'AMD Radeon RX 7900 XT', 100000, 20, 2130, 4), " +
+                    "(18, 'AMD Radeon RX 7800 XT', 60000, 16, 2430, 3), " +
+                    "(19, 'AMD Radeon RX 7700 XT', 50000, 12, 2584, 2), " +
+                    "(20, 'AMD Radeon RX 7600 XT', 35000, 16, 2799, 2), " +
+                    "(21, 'AMD Radeon RX 7600', 30000, 8, 2745, 2), " +
+                    "(22, 'AMD Radeon RX 6600', 20000, 8, 2491, 1), " +
+                    "(23, 'AMD Radeon RX 6400', 12000, 4, 2325, 0) "
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS cpu")
-        db.execSQL("DROP TABLE IF EXISTS gpu")
-        db.execSQL("DROP TABLE IF EXISTS ssd")
-        db.execSQL("DROP TABLE IF EXISTS ram")
+        // Drop CPU table if it exists
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_CPU")
+        // Drop GPU table if it exists
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_GPU")
+        // Recreate CPU and GPU tables
         onCreate(db)
     }
 }
