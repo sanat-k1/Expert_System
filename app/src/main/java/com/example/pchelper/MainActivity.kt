@@ -2,6 +2,7 @@ package com.example.pchelper
 
 
 import android.content.Context
+import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -21,9 +22,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var qbar : AutoCompleteTextView
     private lateinit var jif : ImageView
     private lateinit var submit: Button
+    private lateinit var msgs: QAStore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var question: String
+        var answer : String
 
         submit= findViewById(R.id.button)
         recyclerView = findViewById(R.id.recyclerView)
@@ -31,14 +36,13 @@ class MainActivity : AppCompatActivity() {
         jif= findViewById(R.id.imageView)
 
         datalist = ArrayList()
+        var data = QA("hello","Hello")
+        datalist.add(data)
         var questions = arrayOf("GPU","CPU","RAM")
 
         var qadapter: ArrayAdapter<String> = ArrayAdapter<String>(this,android.R.layout.select_dialog_item,questions)
         qbar.threshold = 1
         qbar.setAdapter(qadapter)
-
-        var db = getSharedPreferences("database",Context.MODE_PRIVATE)
-        var editor = db.edit()
 
 //        jifff
         Glide.with(this)
@@ -56,25 +60,34 @@ class MainActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.Magenta),
             ContextCompat.getColor(this, R.color.yellow)
         )
-
-//        while (true) {
-//            for (i in 0 until colors.size) {
-//                val color = colors[i]
-//                submit.setBackgroundColor(color)
-//            }
-//        }
-
-//        val lgbtlights  = AnimationUtils.loadAnimation(this,R.anim.lgbt)
-//        submit.startAnimation(lgbtlights)
-//       checking if database exist
-        if(db.getString("database","null") == "null" )
-        {
-            editor.putString("database","db present")
+answer= "i dont know boss"
+        submit.setOnClickListener {
+            question=qbar.text.toString()
+            msgs.savedata(question, answer)
+            data= QA(question,answer)
+            datalist.add(data)
+            recyclerView.adapter = QAAdapter(datalist)
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this) // Set LayoutManager
-        val data = QA("hello")
-        datalist.add(data)
+
+//  store and retrieve
+        msgs= QAStore(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        displaymsg()
+
         recyclerView.adapter = QAAdapter(datalist)
+    }
+
+    private fun displaymsg() {
+        var newcursor: Cursor? = msgs!!.getdata()
+        var newaar = ArrayList<QA>()
+        while (newcursor!!.moveToNext())
+        {
+            val q = newcursor.getString(0)
+            val a = newcursor.getString(1)
+            newaar.add(QA(q,a))
+        }
+        recyclerView.adapter = QAAdapter(newaar)
     }
 }

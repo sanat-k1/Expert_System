@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class QAAdapter(private val datalist : ArrayList<QA>): RecyclerView.Adapter<QAAdapter.ViewHolderClass>() {
     class ViewHolderClass(itemView: View):  RecyclerView.ViewHolder(itemView){
+        val question : TextView = itemView.findViewById(R.id.name)
         val answers : TextView = itemView.findViewById(R.id.answer)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QAAdapter.ViewHolderClass {
@@ -18,6 +19,7 @@ class QAAdapter(private val datalist : ArrayList<QA>): RecyclerView.Adapter<QAAd
     override fun onBindViewHolder(holder: QAAdapter.ViewHolderClass, position: Int) {
         var currentitem = datalist[position]
         holder.answers.text = currentitem.Answer
+        holder.question.text = currentitem.Question
 
     }
 
