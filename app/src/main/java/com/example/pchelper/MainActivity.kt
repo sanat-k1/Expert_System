@@ -63,10 +63,12 @@ class MainActivity : AppCompatActivity() {
 answer= "i dont know boss"
         submit.setOnClickListener {
             question=qbar.text.toString()
+            answer = inferenceengine(question)
             msgs.savedata(question, answer)
-            data= QA(question,answer)
+            data= QA(answer,question)
             datalist.add(data)
             recyclerView.adapter = QAAdapter(datalist)
+            qbar.text.clear()
         }
 
 
@@ -77,10 +79,23 @@ answer= "i dont know boss"
         displaymsg()
 
         recyclerView.adapter = QAAdapter(datalist)
+        msgs.close()
+    }
+
+    private fun inferenceengine(question: String): String {
+        val cost: String = "cost"
+        if(question.contains(cost))
+        {
+            
+        }
+
+        return "oooh"
+
     }
 
     private fun displaymsg() {
-        var newcursor: Cursor? = msgs!!.getdata()
+        val db = QAStore(this)
+        var newcursor: Cursor? = db!!.getdata()
         var newaar = ArrayList<QA>()
         while (newcursor!!.moveToNext())
         {
@@ -89,5 +104,6 @@ answer= "i dont know boss"
             newaar.add(QA(q,a))
         }
         recyclerView.adapter = QAAdapter(newaar)
+        newcursor.close()
     }
 }

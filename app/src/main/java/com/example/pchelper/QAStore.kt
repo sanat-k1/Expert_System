@@ -13,8 +13,8 @@ class QAStore(context: Context) :
         const val DATABASE_VERSION =1
         const val DATABASE_NAME = "QASTORE"
         private const val Tablename = "QA"
-        private const val Question = "Question"
-        private const val Answer = "Answer"
+         const val Question = "Question"
+         const val Answer = "Answer"
         private const val CREATE_TABLE_QA = "CREATE TABLE $Tablename (" +
                 "$Question TEXT,"+
                 "$Answer TEXT"+
@@ -26,8 +26,11 @@ class QAStore(context: Context) :
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-//        db?.execSQL("DROP TABLE IF EXISTS $Tablename")
+
+        db?.execSQL("DROP TABLE IF EXISTS $Tablename")
+        onCreate(db)
     }
+
 
     fun savedata(question : String,answer : String){
         val writer = this.writableDatabase
@@ -35,11 +38,12 @@ class QAStore(context: Context) :
         cv.put("Question",question)
         cv.put("Answer",answer)
         this.writableDatabase.insert("QASTORE",null,cv)
+        writer.close()
     }
 
     fun getdata() : Cursor?{
         val writer = this.writableDatabase
-        val cursor = writer.rawQuery("select * from $Tablename",null)
+        val cursor = writer.rawQuery("select * from $Tablename", null)
         return cursor
     }
 
