@@ -68,7 +68,7 @@ class dbController(context: Context) :
         private const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
                 "$SSD_ID INTEGER PRIMARY KEY," +
                 "$SSD_PRICE INTEGER," +
-                "$SSD_CAPACITY INTEGER," +
+                "$SSD_CAPACITY INTEGER" +
                 ")"
 
         // SQL statement for creating RAM table
