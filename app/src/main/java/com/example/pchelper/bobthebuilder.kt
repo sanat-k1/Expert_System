@@ -1,5 +1,6 @@
 package com.example.pchelper
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.CheckBox
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.SeekBar
 import android.widget.Spinner
@@ -19,7 +20,6 @@ class bobthebuilder : Fragment() {
     private lateinit var usageSpinner: Spinner
     private lateinit var budgetSeekBar: SeekBar
     private lateinit var budgetValueTextView: TextView
-    private lateinit var autoSelectComponentsCheckBox: CheckBox
     private lateinit var intelRadioButton: RadioButton
     private lateinit var amdRadioButton: RadioButton
     private lateinit var anyCpuRadioButton: RadioButton
@@ -31,6 +31,7 @@ class bobthebuilder : Fragment() {
     private lateinit var ramCapacitySeekBar: SeekBar
     private lateinit var ramCapacityValueTextView: TextView
     private lateinit var dataFetcher: DataFetcher
+    private lateinit var submitButton: Button
     // Variable to store the selected usage
     private var selectedCpu: String? = null
     private var selectedGpu: String? = null
@@ -64,6 +65,7 @@ class bobthebuilder : Fragment() {
         ramCapacitySeekBar = view.findViewById(R.id.ramCapacitySeekBar)
         ramCapacityValueTextView = view.findViewById(R.id.ramCapacityValueTextView)
         dataFetcher = DataFetcher(requireContext())
+        submitButton = view.findViewById(R.id.submit_button)
 
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -170,8 +172,29 @@ class bobthebuilder : Fragment() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+        submitButton.setOnClickListener {
+            // Gather all the selected values
+            val selectedUsage = userUsage
+            val selectedBudget = budget
+            val selectedCpuType = selectedCpu
+            val selectedGpuType = selectedGpu
+            val selectedSsdCapacity = selectedSsd
+            val selectedRamCapacity = selectedRam
 
+            // Create an Intent to start the new activity
+            val intent = Intent(requireContext(), YourPC::class.java)
+
+            // Pass the gathered values to the intent as extras
+            intent.putExtra("usage", selectedUsage)
+            intent.putExtra("budget", selectedBudget)
+            intent.putExtra("cpuType", selectedCpuType)
+            intent.putExtra("gpuType", selectedGpuType)
+            intent.putExtra("ssdCapacity", selectedSsdCapacity)
+            intent.putExtra("ramCapacity", selectedRamCapacity)
+
+            // Start the new activity
+            startActivity(intent)
+        }
         return view
     }
-
 }
