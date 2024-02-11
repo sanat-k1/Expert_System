@@ -193,14 +193,14 @@ class bobthebuilder : Fragment() {
             // Start the new activity
             // Start the new activity
             requireContext().startActivity(intent)
+            replaceFragment(Yopc())
         }
         return view
     }
-//    private fun replaceFragment(fragment : Fragment){
-//
-//        val fragmentManager =
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.Retardedstudio,fragment)
-//        fragmentTransaction.commit()
-//    }
+    fun replaceFragment(newFragment: Fragment) {
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.Retardedstudio, newFragment)
+        transaction.addToBackStack(null) // Add to back stack to handle back navigation
+        transaction.commit()
+    }
 }
