@@ -141,6 +141,7 @@ class chatbot : Fragment() {
         return bestMatch ?: "I'm sorry, I don't have enough information to diagnose the issue."
     }
 
+
     private fun messageProbability(userMessage: List<String>, recognizedWords: Set<String>): Int {
         val messageCertainty = userMessage.count { it in recognizedWords }
         return (messageCertainty.toDouble() / recognizedWords.size * 100).toInt()
