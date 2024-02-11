@@ -12,15 +12,19 @@ class home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         bottomNavigationMenuView = findViewById(R.id.bottomNavigationView)
-        bottomNavigationMenuView.setOnClickListener {
-            when(it.id)
+        bottomNavigationMenuView.setOnItemSelectedListener {
+            when(it.itemId)
             {
                 R.id.Chatbot -> replaceFragment(chatbot())
                 R.id.vish1 -> replaceFragment(bobthebuilder())
                 R.id.vish2 -> replaceFragment(fag2())
-            }
+                else ->{
 
+                }
+            }
+            true
         }
+
         replaceFragment(chatbot())
     }
     private fun replaceFragment(fragment : Fragment){
