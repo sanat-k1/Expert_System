@@ -12,6 +12,7 @@ import android.widget.RadioButton
 import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 
 
 class bobthebuilder : Fragment() {
@@ -30,6 +31,8 @@ class bobthebuilder : Fragment() {
     private lateinit var ramCapacitySeekBar: SeekBar
     private lateinit var ramCapacityValueTextView: TextView
     private lateinit var dataFetcher: DataFetcher
+    // Variable to store the selected usage
+    var user_usage: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -45,7 +48,6 @@ class bobthebuilder : Fragment() {
         usageSpinner = view.findViewById(R.id.usageSpinner)
         budgetSeekBar = view.findViewById(R.id.budgetSeekBar)
         budgetValueTextView = view.findViewById(R.id.budgetValueTextView)
-        autoSelectComponentsCheckBox = view.findViewById(R.id.autoSelectComponentsCheckBox)
         intelRadioButton = view.findViewById(R.id.intelRadioButton)
         amdRadioButton = view.findViewById(R.id.amdRadioButton)
         anyCpuRadioButton = view.findViewById(R.id.anyCpuRadioButton)
@@ -75,11 +77,12 @@ class bobthebuilder : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                // Handle selection
+                user_usage = parent?.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Handle nothing selected
+                // Show toast to choose usage when nothing is selected
+                Toast.makeText(requireContext(), "Please choose a usage", Toast.LENGTH_SHORT).show()
             }
         }
 
