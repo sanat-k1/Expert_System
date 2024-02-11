@@ -1,13 +1,16 @@
 package com.example.pchelper
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dbController
 
 class YourPC : AppCompatActivity() {
 
     private lateinit var dbController: dbController
+    lateinit var back: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pc)
@@ -27,6 +30,7 @@ class YourPC : AppCompatActivity() {
         val gpuTextView = findViewById<TextView>(R.id.gpuTextView)
         val ssdTextView = findViewById<TextView>(R.id.ssdTextView)
         val ramTextView = findViewById<TextView>(R.id.ramTextView)
+        back= findViewById(R.id.floatingActionButton)
 
 // Display the received data in the TextViews
         usageTextView.text = "Usage: $usage"
@@ -35,7 +39,11 @@ class YourPC : AppCompatActivity() {
         gpuTextView.text = "GPU: $gpuType"
         ssdTextView.text = "SSD Capacity: $ssdCapacity"
         ramTextView.text = "RAM Capacity: $ramCapacity"
-
+    back.setOnClickListener {
+        val intent = Intent(this,home::class.java)
+        intent.putExtra("mode","yopc")
+        startActivity(intent)
+    }
 
     }
 }

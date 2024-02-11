@@ -1,5 +1,6 @@
 package com.example.pchelper
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,8 +26,15 @@ class home : AppCompatActivity() {
             }
             true
         }
-
-        replaceFragment(chatbot())
+        val intent = intent
+        if (intent.getStringExtra("mode") == "yopc")
+        {
+            replaceFragment(bobthebuilder())
+            bottomNavigationMenuView.selectedItemId = R.id.vish1
+        }
+else {
+            replaceFragment(chatbot())
+        }
     }
     private fun replaceFragment(fragment : Fragment){
 
