@@ -8,7 +8,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class home : AppCompatActivity() {
     lateinit var bottomNavigationMenuView: BottomNavigationView
-    private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -17,7 +16,7 @@ class home : AppCompatActivity() {
             when(it.id)
             {
                 R.id.Chatbot -> replaceFragment(chatbot())
-                R.id.vish1 -> replaceFragment(Builder())
+                R.id.vish1 -> replaceFragment(bobthebuilder())
                 R.id.vish2 -> replaceFragment(fag2())
             }
 

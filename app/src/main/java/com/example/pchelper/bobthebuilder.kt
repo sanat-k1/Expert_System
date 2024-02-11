@@ -13,15 +13,8 @@ import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 
-class Builder : Fragment() {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
+class bobthebuilder : Fragment() {
     private lateinit var usageSpinner: Spinner
     private lateinit var budgetSeekBar: SeekBar
     private lateinit var budgetValueTextView: TextView
@@ -36,12 +29,18 @@ class Builder : Fragment() {
     private lateinit var ssdCapacityValueTextView: TextView
     private lateinit var ramCapacitySeekBar: SeekBar
     private lateinit var ramCapacityValueTextView: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_builder, container, false)
+        val view = inflater.inflate(R.layout.fragment_bobthebuilder, container, false)
         usageSpinner = view.findViewById(R.id.usageSpinner)
         budgetSeekBar = view.findViewById(R.id.budgetSeekBar)
         budgetValueTextView = view.findViewById(R.id.budgetValueTextView)

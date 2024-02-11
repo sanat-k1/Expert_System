@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bobthebuilder">
+    <ScrollView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Build">
+            <!-- Select Usage Dropdown -->
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="16dp"
+                android:text="Custom PC :"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Budget SeekBar -->
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Select Usage:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/usageSpinner"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/usageSpinner"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="19dp"
+                android:entries="@array/usage_options"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Select Budget (in INR):"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/budgetValueTextView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <!-- CPU Brand Radio Buttons -->
+
+            <SeekBar
+                android:id="@+id/budgetSeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="131dp"
+                android:layout_marginBottom="131dp"
+                android:max="100000"
+                android:progress="50000"
+                app:layout_constraintBottom_toTopOf="@+id/cpuBrandLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/budgetValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="20dp"
+                android:text="50,000 INR"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/budgetSeekBar"
+                app:layout_constraintStart_toEndOf="@+id/textView4" />
+
+            <!-- Auto Select Checkbox -->
+            <CheckBox
+                android:id="@+id/autoSelectComponentsCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginBottom="25dp"
+                android:checked="true"
+                android:text="Auto Select Components (Checked by default)"
+                app:layout_constraintBottom_toTopOf="@+id/cpuBrandLabel"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- GPU Brand Radio Buttons -->
+            <TextView
+                android:id="@+id/cpuBrandLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="20dp"
+                android:text="Select CPU Brand:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/cpuBrandRadioGroup"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/cpuBrandRadioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/gpuBrandLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RadioButton
+                    android:id="@+id/intelRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Intel"
+                    tools:layout_editor_absoluteX="48dp"
+                    tools:layout_editor_absoluteY="526dp" />
+
+                <RadioButton
+                    android:id="@+id/amdRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AMD"
+                    tools:layout_editor_absoluteX="135dp"
+                    tools:layout_editor_absoluteY="526dp" />
+
+                <RadioButton
+                    android:id="@+id/anyCpuRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Any" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/gpuBrandRadioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/ssdCapacityLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RadioButton
+                    android:id="@+id/nvidiaRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NVIDIA"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="602dp" />
+
+                <RadioButton
+                    android:id="@+id/amdGpuRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AMD" />
+
+                <RadioButton
+                    android:id="@+id/anyGpuRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Any" />
+            </RadioGroup>
+
+            <SeekBar
+                android:id="@+id/ssdCapacitySeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="128dp"
+                android:max="2048"
+                android:progress="256"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/ssdCapacityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="13dp"
+                android:text="Select SSD Capacity (GB):"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/ssdCapacitySeekBar"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/gpuBrandLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginBottom="12dp"
+                android:text="Select GPU Brand:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/gpuBrandRadioGroup"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!--    SSD Capacity SeekBar-->
+
+            <TextView
+                android:id="@+id/ssdCapacityValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:text="256 GB"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/ssdCapacityLabel"
+                app:layout_constraintStart_toEndOf="@+id/ssdCapacityLabel" />
+
+            <!-- RAM Capacity SeekBar -->
+            <TextView
+                android:id="@+id/ramCapacityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="23dp"
+                android:text="Select RAM Capacity (GB):"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ssdCapacitySeekBar" />
+
+            <SeekBar
+                android:id="@+id/ramCapacitySeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:max="128"
+                android:progress="8"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/ramCapacityValueTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:text="8 GB"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/ramCapacityLabel"
+                app:layout_constraintStart_toEndOf="@+id/ramCapacityLabel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
