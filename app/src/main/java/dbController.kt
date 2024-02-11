@@ -97,9 +97,7 @@ class dbController(context: Context) :
 
         // Insert data into CPU table
         db.execSQL(
-            "INSERT INTO $TABLE_CPU (" + CPU_ID + ", " + CPU_NAME + ", "
-                    + CPU_PRICE + ", " + CPU_TIER + ", " + CPU_BASE_CLOCK + ", "
-                    + CPU_MAX_CLOCK + ", " + CPU_CORES + ", " + CPU_THREADS + ", "+ CPU_IMG + ") VALUES " +
+            "INSERT INTO $TABLE_CPU ($CPU_ID, $CPU_NAME, $CPU_PRICE, $CPU_TIER, $CPU_BASE_CLOCK, $CPU_MAX_CLOCK, $CPU_CORES, $CPU_THREADS, $CPU_IMG) VALUES " +
                     "(1, 'Intel Core i9-13900K', 55000, 3, 3.00, 5.80, 24, 32, 'i13900k'), " +
                     "(2, 'Intel Core i9-12900K', 45000, 3, 3.20, 5.20, 16, 24, 'i12900k'), " +
                     "(3, 'Intel Core i7-13700K', 40000, 2, 2.50, 5.40, 16, 24, 'i13700k'), " +
@@ -122,30 +120,30 @@ class dbController(context: Context) :
         )
         // Insert data into GPU table
         db.execSQL(
-            "INSERT INTO $TABLE_GPU ($GPU_ID, $GPU_NAME, $GPU_PRICE, $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER) VALUES " +
-                    "(1, 'NVIDIA GeForce RTX 4090', 200000, 24, 2600, 3), " +
-                    "(2, 'NVIDIA GeForce RTX 3090', 150000, 24, 1695, 3), " +
-                    "(3, 'NVIDIA GeForce RTX 4080', 120000, 16, 2520, 3), " +
-                    "(4, 'NVIDIA GeForce RTX 3080', 110000, 10, 1710, 2), " +
-                    "(5, 'NVIDIA GeForce RTX 4070 Ti', 80000, 12, 1710, 2), " +
-                    "(6, 'NVIDIA GeForce RTX 3070 Ti', 70000, 8, 1830, 2), " +
-                    "(7, 'NVIDIA GeForce RTX 4070', 55000, 12, 2480, 2), " +
-                    "(8, 'NVIDIA GeForce RTX 3070', 40000, 8, 1725, 2), " +
-                    "(9, 'NVIDIA GeForce RTX 3060 Ti', 35000, 8, 1700, 1), " +
-                    "(10, 'NVIDIA GeForce RTX 4060', 30000, 8, 2505, 1), " +
-                    "(11, 'NVIDIA GeForce RTX 3060', 27000, 12, 1777, 1), " +
-                    "(12, 'NVIDIA GeForce RTX 3050', 22000, 8, 1450, 1), " +
-                    "(13, 'NVIDIA GeForce GTX 1660s', 18000, 6, 1785, 0), " +
-                    "(14, 'NVIDIA GeForce GTX 1650', 12000, 4, 1710, 0), " +
-                    "(15, 'NVIDIA GeForce GT 730', 5000, 2, 902, 0), " +
-                    "(16, 'AMD Radeon RX 7900 XTX', 120000, 24, 2620, 3), " +
-                    "(17, 'AMD Radeon RX 7900 XT', 100000, 20, 2130, 3), " +
-                    "(18, 'AMD Radeon RX 7800 XT', 60000, 16, 2430, 2), " +
-                    "(19, 'AMD Radeon RX 7700 XT', 50000, 12, 2584, 2), " +
-                    "(20, 'AMD Radeon RX 7600 XT', 35000, 16, 2799, 1), " +
-                    "(21, 'AMD Radeon RX 7600', 30000, 8, 2745, 1), " +
-                    "(22, 'AMD Radeon RX 6600', 20000, 8, 2491, 1), " +
-                    "(23, 'AMD Radeon RX 6400', 12000, 4, 2325, 0) "
+            "INSERT INTO $TABLE_GPU ($GPU_ID, $GPU_NAME, $GPU_PRICE, $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER, $GPU_IMG) VALUES " +
+                    "(1, 'NVIDIA GeForce RTX 4090', 200000, 24, 2600, 3, 'n4090'), " +
+                    "(2, 'NVIDIA GeForce RTX 3090', 150000, 24, 1695, 3, 'n3090'), " +
+                    "(3, 'NVIDIA GeForce RTX 4080', 120000, 16, 2520, 3, 'n4080'), " +
+                    "(4, 'NVIDIA GeForce RTX 3080', 110000, 10, 1710, 2, 'n3080'), " +
+                    "(5, 'NVIDIA GeForce RTX 4070 Ti', 80000, 12, 1710, 2, 'n4070ti'), " +
+                    "(6, 'NVIDIA GeForce RTX 3070 Ti', 70000, 8, 1830, 2, 'n3070ti'), " +
+                    "(7, 'NVIDIA GeForce RTX 4070', 55000, 12, 2480, 2, 'n4070'), " +
+                    "(8, 'NVIDIA GeForce RTX 3070', 40000, 8, 1725, 2, 'n3070'), " +
+                    "(9, 'NVIDIA GeForce RTX 3060 Ti', 35000, 8, 1700, 1, 'n3060ti'), " +
+                    "(10, 'NVIDIA GeForce RTX 4060', 30000, 8, 2505, 1, 'n4060'), " +
+                    "(11, 'NVIDIA GeForce RTX 3060', 27000, 12, 1777, 1, 'n3060'), " +
+                    "(12, 'NVIDIA GeForce RTX 3050', 22000, 8, 1450, 1, 'n3050'), " +
+                    "(13, 'NVIDIA GeForce GTX 1660s', 18000, 6, 1785, 0, 'n1660s'), " +
+                    "(14, 'NVIDIA GeForce GTX 1650', 12000, 4, 1710, 0, 'n1650'), " +
+                    "(15, 'NVIDIA GeForce GT 730', 5000, 2, 902, 0, 'n730'), " +
+                    "(16, 'AMD Radeon RX 7900 XTX', 120000, 24, 2620, 3, 'r7900xtx'), " +
+                    "(17, 'AMD Radeon RX 7900 XT', 100000, 20, 2130, 3, 'r7900xt'), " +
+                    "(18, 'AMD Radeon RX 7800 XT', 60000, 16, 2430, 2, 'r7800xt'), " +
+                    "(19, 'AMD Radeon RX 7700 XT', 50000, 12, 2584, 2, 'r7700xt'), " +
+                    "(20, 'AMD Radeon RX 7600 XT', 35000, 16, 2799, 1, 'r7600xt'), " +
+                    "(21, 'AMD Radeon RX 7600', 30000, 8, 2745, 1, 'r7600'), " +
+                    "(22, 'AMD Radeon RX 6600', 20000, 8, 2491, 1, 'r6600'), " +
+                    "(23, 'AMD Radeon RX 6400', 12000, 4, 2325, 0, 'r6400') "
         )
         // Insert data into SSD table
         db.execSQL(
