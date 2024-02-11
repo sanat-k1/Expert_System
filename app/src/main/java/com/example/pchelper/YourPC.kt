@@ -35,5 +35,7 @@ class YourPC : AppCompatActivity() {
         gpuTextView.text = "GPU: $gpuType"
         ssdTextView.text = "SSD Capacity: $ssdCapacity"
         ramTextView.text = "RAM Capacity: $ramCapacity"
+
+
     }
 }
