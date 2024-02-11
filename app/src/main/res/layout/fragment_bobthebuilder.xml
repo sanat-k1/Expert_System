@@ -90,7 +90,7 @@
 
             <RadioGroup
                 android:id="@+id/cpuBrandRadioGroup"
-                android:layout_width="400dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
@@ -199,7 +199,7 @@
 
             <RadioGroup
                 android:id="@+id/gpuBrandRadioGroup"
-                android:layout_width="400dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
