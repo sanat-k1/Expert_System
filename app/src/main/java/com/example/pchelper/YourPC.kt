@@ -2,6 +2,7 @@ package com.example.pchelper
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import dbController
 
 class YourPC : AppCompatActivity() {
@@ -19,5 +20,20 @@ class YourPC : AppCompatActivity() {
         val gpuType = intent.getStringExtra("gpuType")
         val ssdCapacity = intent.getStringExtra("ssdCapacity")
         val ramCapacity = intent.getStringExtra("ramCapacity")
+        // Assuming you have TextViews in your layout to display the PC configuration details
+        val usageTextView = findViewById<TextView>(R.id.usageTextView)
+        val budgetTextView = findViewById<TextView>(R.id.budgetTextView)
+        val cpuTextView = findViewById<TextView>(R.id.cpuTextView)
+        val gpuTextView = findViewById<TextView>(R.id.gpuTextView)
+        val ssdTextView = findViewById<TextView>(R.id.ssdTextView)
+        val ramTextView = findViewById<TextView>(R.id.ramTextView)
+
+// Display the received data in the TextViews
+        usageTextView.text = "Usage: $usage"
+        budgetTextView.text = "Budget: $budget INR"
+        cpuTextView.text = "CPU: $cpuType"
+        gpuTextView.text = "GPU: $gpuType"
+        ssdTextView.text = "SSD Capacity: $ssdCapacity"
+        ramTextView.text = "RAM Capacity: $ramCapacity"
     }
 }

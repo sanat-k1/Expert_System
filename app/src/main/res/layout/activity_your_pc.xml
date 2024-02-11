@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".YourPC">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/usageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usage:"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/budgetTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Budget:"
+        android:textSize="18sp"
+        android:layout_below="@id/usageTextView"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/cpuTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPU:"
+        android:textSize="18sp"
+        android:layout_below="@id/budgetTextView"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/gpuTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPU:"
+        android:textSize="18sp"
+        android:layout_below="@id/cpuTextView"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/ssdTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SSD Capacity:"
+        android:textSize="18sp"
+        android:layout_below="@id/gpuTextView"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/ramTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RAM Capacity:"
+        android:textSize="18sp"
+        android:layout_below="@id/ssdTextView"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+</RelativeLayout>

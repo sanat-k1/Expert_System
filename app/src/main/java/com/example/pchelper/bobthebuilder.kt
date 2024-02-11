@@ -30,7 +30,6 @@ class bobthebuilder : Fragment() {
     private lateinit var ssdCapacityValueTextView: TextView
     private lateinit var ramCapacitySeekBar: SeekBar
     private lateinit var ramCapacityValueTextView: TextView
-    private lateinit var dataFetcher: DataFetcher
     private lateinit var submitButton: Button
     // Variable to store the selected usage
     private var selectedCpu: String? = null
@@ -64,7 +63,6 @@ class bobthebuilder : Fragment() {
         ssdCapacityValueTextView = view.findViewById(R.id.ssdCapacityValueTextView)
         ramCapacitySeekBar = view.findViewById(R.id.ramCapacitySeekBar)
         ramCapacityValueTextView = view.findViewById(R.id.ramCapacityValueTextView)
-        dataFetcher = DataFetcher(requireContext())
         submitButton = view.findViewById(R.id.submit_button)
 
         ArrayAdapter.createFromResource(
