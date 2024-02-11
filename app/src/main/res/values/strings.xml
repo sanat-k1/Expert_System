@@ -2,4 +2,10 @@
     <string name="app_name">PC Helper</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="usage_options">
+        <item>Option 1: Home</item>
+        <item>Option 2: Work</item>
+        <item>Option 3: Gaming</item>
+        <item>Option 4: 3D Rendering</item>
+    </string-array>
 </resources>

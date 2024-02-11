@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.pchelper.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class home : AppCompatActivity() {
@@ -18,7 +17,7 @@ class home : AppCompatActivity() {
             when(it.id)
             {
                 R.id.Chatbot -> replaceFragment(chatbot())
-                R.id.vish1 -> replaceFragment(fag1())
+                R.id.vish1 -> replaceFragment(Builder())
                 R.id.vish2 -> replaceFragment(fag2())
             }
 
