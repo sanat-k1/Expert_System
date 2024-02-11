@@ -120,6 +120,22 @@ class bobthebuilder : Fragment() {
         amdRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedCpu = "AMD"
         }
+        anyCpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) selectedCpu = "any"
+        }
+
+        amdRadioButton.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) selectedCpu = "AMD"
+        }
+
+        // Radio button listeners for GPU
+        nvidiaRadioButton.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) selectedGpu = "Nvidia"
+        }
+
+        anyGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) selectedGpu = "any"
+        }
 
 
 
