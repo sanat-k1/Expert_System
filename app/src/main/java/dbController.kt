@@ -180,4 +180,26 @@ class dbController(context: Context) :
         // Recreate CPU, GPU, SSD, and RAM tables
         onCreate(db)
     }
+
+//    fun getAllCPUNames(): List<String> {
+//        val cpuNames = mutableListOf<String>()
+//        val db = this.readableDatabase
+//        val query = "SELECT $CPU_NAME FROM $TABLE_CPU"
+//        val cursor = db.rawQuery(query, null)
+//        cursor.use {
+//            while (it.moveToNext()) {
+//                val cpuNameIndex = it.getColumnIndex(CPU_NAME)
+//                if (cpuNameIndex != -1) {
+//                    val cpuName = it.getString(cpuNameIndex)
+//                    cpuNames.add(cpuName)
+//                } else {
+//                    // If column index is -1, return an empty list to indicate an error
+//                    return emptyList()
+//                }
+//            }
+//        }
+//        return cpuNames
+//    }
+
+
 }
