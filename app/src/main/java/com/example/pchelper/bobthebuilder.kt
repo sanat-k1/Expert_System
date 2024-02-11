@@ -33,6 +33,7 @@ class bobthebuilder : Fragment() {
     private lateinit var dataFetcher: DataFetcher
     // Variable to store the selected usage
     var user_usage: String? = null
+    var budget : Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -87,15 +88,15 @@ class bobthebuilder : Fragment() {
         }
 
 
-        val maxBudget = 100000 // Maximum budget in rupees
-        val stepSize = 5000 // Increment step size in rupees
+        val maxBudget = 250000 // Maximum budget in rupees
+        val stepSize = 10000 // Increment step size in rupees
         budgetSeekBar.max = maxBudget / stepSize // Set max progress based on step size
 
         // Set budget seekbar progress change listener
         budgetSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // Calculate budget value based on progress and step size
-                val budget = progress * stepSize
+                budget = progress * stepSize
                 // Update budget value text view
                 budgetValueTextView.text = "$budget INR"
             }
