@@ -29,6 +29,7 @@ class bobthebuilder : Fragment() {
     private lateinit var ssdCapacityValueTextView: TextView
     private lateinit var ramCapacitySeekBar: SeekBar
     private lateinit var ramCapacityValueTextView: TextView
+    private lateinit var dataFetcher: DataFetcher
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -55,7 +56,7 @@ class bobthebuilder : Fragment() {
         ssdCapacityValueTextView = view.findViewById(R.id.ssdCapacityValueTextView)
         ramCapacitySeekBar = view.findViewById(R.id.ramCapacitySeekBar)
         ramCapacityValueTextView = view.findViewById(R.id.ramCapacityValueTextView)
-
+        dataFetcher = DataFetcher(requireContext())
 
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -106,4 +107,30 @@ class bobthebuilder : Fragment() {
         // Inflate the layout for this fragment
         return view
     }
+    private fun suggestComponents(usageType: String, maxBudget: Int, dataFetcher: DataFetcher): List<Component> {
+        val suggestedComponents = mutableListOf<Component>()
+
+        // Fetch components based on usage type and budget using DataFetcher
+        when (usageType) {
+            "Gaming" -> {
+                val cpus = dataFetcher.fetchCPUs().filter { it.price <= maxBudget }
+                // Add gaming-specific rules for selecting CPUs
+                // Example: prioritize CPUs with higher clock speeds
+                // Add selected CPUs to suggestedComponents list
+            }
+            "Productivity" -> {
+                // Add productivity-specific rules for selecting components
+                // Example: prioritize CPUs with more cores and threads for multitasking
+            }
+            // Add more cases for other usage types if needed
+        }
+
+        // Add logic to select the best combination of components based on inference rules
+        // For example, select the CPU-GPU combination that maximizes performance within budget
+
+        return suggestedComponents
+    }
+
+    // Define other methods and properties as needed
+}
 }

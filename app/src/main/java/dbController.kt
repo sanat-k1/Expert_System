@@ -6,46 +6,46 @@ class dbController(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "my_database.db"
-        private const val DATABASE_VERSION = 1
+         const val DATABASE_NAME = "my_database.db"
+         const val DATABASE_VERSION = 1
 
         // CPU table
-        private const val TABLE_CPU = "cpu"
-        private const val CPU_ID = "ID"
-        private const val CPU_NAME = "CPU_name"
-        private const val CPU_PRICE = "CPU_price"
-        private const val CPU_TIER = "Tier"
-        private const val CPU_BASE_CLOCK = "Base_clk"
-        private const val CPU_MAX_CLOCK = "Max_clk"
-        private const val CPU_CORES = "Cores"
-        private const val CPU_THREADS = "Threads"
-        private const val CPU_IMG = "Image"
+         const val TABLE_CPU = "cpu"
+         const val CPU_ID = "ID"
+         const val CPU_NAME = "CPU_name"
+         const val CPU_PRICE = "CPU_price"
+         const val CPU_TIER = "Tier"
+         const val CPU_BASE_CLOCK = "Base_clk"
+         const val CPU_MAX_CLOCK = "Max_clk"
+         const val CPU_CORES = "Cores"
+         const val CPU_THREADS = "Threads"
+         const val CPU_IMG = "Image"
 
         // GPU table
-        private const val TABLE_GPU = "gpu"
-        private const val GPU_ID = "ID"
-        private const val GPU_NAME = "GPU_name"
-        private const val GPU_PRICE = "GPU_price"
-        private const val GPU_VRAM = "VRAM"
-        private const val GPU_CLOCK_SPEED = "Clock_speed"
-        private const val GPU_TIER = "Tier"
-        private const val GPU_IMG = "Image"
+         const val TABLE_GPU = "gpu"
+         const val GPU_ID = "ID"
+         const val GPU_NAME = "GPU_name"
+         const val GPU_PRICE = "GPU_price"
+         const val GPU_VRAM = "VRAM"
+         const val GPU_CLOCK_SPEED = "Clock_speed"
+         const val GPU_TIER = "Tier"
+         const val GPU_IMG = "Image"
 
         // SSD table
-        private const val TABLE_SSD = "ssd"
-        private const val SSD_ID = "ID"
-        private const val SSD_PRICE = "SSD_price"
-        private const val SSD_CAPACITY = "Capacity"
+         const val TABLE_SSD = "ssd"
+         const val SSD_ID = "ID"
+         const val SSD_PRICE = "SSD_price"
+         const val SSD_CAPACITY = "Capacity"
 
         // RAM table
-        private const val TABLE_RAM = "ram"
-        private const val RAM_ID = "ID"
-        private const val RAM_PRICE = "RAM_price"
-        private const val RAM_CAPACITY = "Capacity"
-        private const val RAM_TYPE = "Type"
+         const val TABLE_RAM = "ram"
+         const val RAM_ID = "ID"
+         const val RAM_PRICE = "RAM_price"
+         const val RAM_CAPACITY = "Capacity"
+         const val RAM_TYPE = "Type"
 
         // SQL statement for creating CPU table
-        private const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
+         const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
                 "$CPU_ID INTEGER PRIMARY KEY," +
                 "$CPU_NAME TEXT," +
                 "$CPU_PRICE REAL," +
@@ -58,7 +58,7 @@ class dbController(context: Context) :
                 ")"
 
         // SQL statement for creating GPU table
-        private const val CREATE_TABLE_GPU = "CREATE TABLE $TABLE_GPU (" +
+         const val CREATE_TABLE_GPU = "CREATE TABLE $TABLE_GPU (" +
                 "$GPU_ID INTEGER PRIMARY KEY," +
                 "$GPU_NAME TEXT," +
                 "$GPU_PRICE INTEGER," +
@@ -69,14 +69,14 @@ class dbController(context: Context) :
                 ")"
 
         // SQL statement for creating SSD table
-        private const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
+         const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
                 "$SSD_ID INTEGER PRIMARY KEY," +
                 "$SSD_PRICE INTEGER," +
                 "$SSD_CAPACITY INTEGER" +
                 ")"
 
         // SQL statement for creating RAM table
-        private const val CREATE_TABLE_RAM = "CREATE TABLE $TABLE_RAM (" +
+         const val CREATE_TABLE_RAM = "CREATE TABLE $TABLE_RAM (" +
                 "$RAM_ID INTEGER PRIMARY KEY," +
                 "$RAM_PRICE INTEGER," +
                 "$RAM_CAPACITY INTEGER," +

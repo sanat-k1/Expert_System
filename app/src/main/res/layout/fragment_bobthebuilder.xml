@@ -269,4 +269,5 @@
                 app:layout_constraintStart_toEndOf="@+id/ramCapacityLabel" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </FrameLayout>
