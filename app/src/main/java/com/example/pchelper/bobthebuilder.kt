@@ -196,4 +196,11 @@ class bobthebuilder : Fragment() {
         }
         return view
     }
+//    private fun replaceFragment(fragment : Fragment){
+//
+//        val fragmentManager =
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.replace(R.id.Retardedstudio,fragment)
+//        fragmentTransaction.commit()
+//    }
 }
