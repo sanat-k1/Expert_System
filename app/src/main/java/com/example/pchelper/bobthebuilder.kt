@@ -35,10 +35,9 @@ class bobthebuilder : Fragment() {
     private var selectedCpu: String? = null
     private var selectedGpu: String? = null
     private var selectedRam: String? = null
+    private var user_usage: String? = null
     private var selectedSsd: String? = null
-
-    var user_usage: String? = null
-    var budget : Int =0
+    private var budget : Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -136,8 +135,56 @@ class bobthebuilder : Fragment() {
         anyGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedGpu = "any"
         }
-        Toast.makeText(requireContext(), "$selectedCpu,$selectedGpu,$selectedRam,$selectedSsd,$budget,$user_usage", Toast.LENGTH_SHORT).show()
-        // Inflate the layout for this fragment
+        // Set available SSD capacities and their corresponding progress values
+        val ssdCapacities = listOf(256, 512, 1024, 2048, 4096)
+        val maxSsdProgress = ssdCapacities.size - 1
+        val ssdStepSize = 1
+        ssdCapacitySeekBar.max = maxSsdProgress // Set max progress based on the number of capacities
+        ssdCapacitySeekBar.progress = 0 // Set initial progress
+
+        // Set available RAM capacities and their corresponding progress values
+        val ramCapacities = listOf(8, 16, 32, 64, 128)
+        val maxRamProgress = ramCapacities.size - 1
+        val ramStepSize = 1
+        ramCapacitySeekBar.max = maxRamProgress // Set max progress based on the number of capacities
+        ramCapacitySeekBar.progress = 0 // Set initial progress
+
+        // Set listener for SSD capacity seekbar
+        ssdCapacitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Calculate SSD capacity based on progress index
+                selectedSsd = "${ssdCapacities[progress]}GB"
+                // Update SSD capacity text view
+                ssdCapacityValueTextView.text = selectedSsd
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // No implementation needed
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // No implementation needed
+            }
+        })
+
+        // Set listener for RAM capacity seekbar
+        ramCapacitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // Calculate RAM capacity based on progress index
+                selectedRam = "${ramCapacities[progress]}GB"
+                // Update RAM capacity text view
+                ramCapacityValueTextView.text = selectedRam
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // No implementation needed
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // No implementation needed
+            }
+        })
+
         return view
     }
 
