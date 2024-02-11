@@ -191,7 +191,8 @@ class bobthebuilder : Fragment() {
             intent.putExtra("ramCapacity", selectedRamCapacity)
 
             // Start the new activity
-            startActivity(intent)
+            // Start the new activity
+            requireContext().startActivity(intent)
         }
         return view
     }
