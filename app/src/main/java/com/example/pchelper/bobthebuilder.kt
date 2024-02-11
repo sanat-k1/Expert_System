@@ -35,7 +35,7 @@ class bobthebuilder : Fragment() {
     private var selectedCpu: String? = null
     private var selectedGpu: String? = null
     private var selectedRam: String? = null
-    private var user_usage: String? = null
+    private var userUsage: String? = null
     private var selectedSsd: String? = null
     private var budget : Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +82,7 @@ class bobthebuilder : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                user_usage = parent?.getItemAtPosition(position).toString()
+                userUsage = parent?.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -93,7 +93,7 @@ class bobthebuilder : Fragment() {
 
 
         val maxBudget = 250000 // Maximum budget in rupees
-        val stepSize = 10000 // Increment step size in rupees
+        val stepSize = 5000 // Increment step size in rupees
         budgetSeekBar.max = maxBudget / stepSize // Set max progress based on step size
 
         // Set budget seekbar progress change listener
@@ -104,18 +104,14 @@ class bobthebuilder : Fragment() {
                 // Update budget value text view
                 budgetValueTextView.text = "$budget INR"
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // Do nothing
-            }
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Do nothing
-            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
+        // Radio button listeners for CPU
         intelRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedCpu = "Intel"
         }
-
         amdRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedCpu = "AMD"
         }
@@ -123,18 +119,18 @@ class bobthebuilder : Fragment() {
             if (isChecked) selectedCpu = "any"
         }
 
-        amdRadioButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) selectedCpu = "AMD"
-        }
 
         // Radio button listeners for GPU
         nvidiaRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedGpu = "Nvidia"
         }
-
+        amdGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) selectedCpu = "AMD"
+        }
         anyGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedGpu = "any"
         }
+
         // Set available SSD capacities and their corresponding progress values
         val ssdCapacities = listOf(256, 512, 1024, 2048, 4096)
         val maxSsdProgress = ssdCapacities.size - 1
@@ -158,13 +154,8 @@ class bobthebuilder : Fragment() {
                 ssdCapacityValueTextView.text = selectedSsd
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // No implementation needed
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // No implementation needed
-            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
         // Set listener for RAM capacity seekbar
@@ -176,13 +167,8 @@ class bobthebuilder : Fragment() {
                 ramCapacityValueTextView.text = selectedRam
             }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // No implementation needed
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // No implementation needed
-            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
         return view
