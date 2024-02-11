@@ -73,6 +73,13 @@ class chatbot : Fragment() {
         answer= "i dont know boss"
         submit.setOnClickListener {
             question=qbar.text.toString()
+            val userInput = qbar.text.toString().trim()
+            if(question.isNotBlank()){
+                val botResponse = getResponse(userInput)
+                textView.text = "Bot: $botResponse"
+
+            }
+
             msgs.savedata(question, answer)
             data= QA(question,answer)
             datalist.add(data)
