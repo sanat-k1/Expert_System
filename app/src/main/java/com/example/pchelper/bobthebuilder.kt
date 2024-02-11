@@ -136,12 +136,7 @@ class bobthebuilder : Fragment() {
         anyGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedGpu = "any"
         }
-
-
-
-
-
-
+        Toast.makeText(requireContext(), "$selectedCpu,$selectedGpu,$selectedRam,$selectedSsd,$budget,$user_usage", Toast.LENGTH_SHORT).show()
         // Inflate the layout for this fragment
         return view
     }
