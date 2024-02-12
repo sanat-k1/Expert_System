@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bobthebuilder"
-    android:layout_marginTop="45dp">
+    android:layout_marginTop="50dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,8 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Custom PC :"
                 android:textSize="22dp"
                 android:textStyle="bold"
@@ -65,11 +66,13 @@
 
             <SeekBar
                 android:id="@+id/budgetSeekBar"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="331dp"
+                android:layout_height="29dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:max="100000"
+                android:min="25000"
+                android:max="250000"
+                android:padding="5dp"
                 android:progress="50000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -120,8 +123,8 @@
                     android:id="@+id/anyCpuRadioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Any"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:text="Any" />
             </RadioGroup>
 
             <TextView
@@ -139,8 +142,8 @@
 
             <SeekBar
                 android:id="@+id/ssdCapacitySeekBar"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="326dp"
+                android:layout_height="23dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="28dp"
                 android:max="2048"
@@ -189,8 +192,8 @@
 
             <SeekBar
                 android:id="@+id/ramCapacitySeekBar"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="319dp"
+                android:layout_height="26dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:max="128"
@@ -228,8 +231,8 @@
                     android:id="@+id/anyGpuRadioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Any"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:text="Any" />
             </RadioGroup>
 
             <TextView
@@ -260,11 +263,14 @@
                 android:id="@+id/submit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="136dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
                 android:text="Create"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ramCapacitySeekBar" />
+                app:layout_constraintTop_toBottomOf="@+id/ramCapacitySeekBar"
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

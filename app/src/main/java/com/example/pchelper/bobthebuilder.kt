@@ -15,8 +15,6 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import dbController
-
-
 class bobthebuilder : Fragment() {
     private lateinit var usageSpinner: Spinner
     private lateinit var budgetSeekBar: SeekBar
@@ -45,7 +43,6 @@ class bobthebuilder : Fragment() {
 
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,8 +72,6 @@ class bobthebuilder : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             usageSpinner.adapter = adapter
         }
-
-
         usageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -92,8 +87,6 @@ class bobthebuilder : Fragment() {
                 Toast.makeText(requireContext(), "Please choose a usage", Toast.LENGTH_SHORT).show()
             }
         }
-
-
         val maxBudget = 250000 // Maximum budget in rupees
         val stepSize = 5000 // Increment step size in rupees
 
@@ -136,15 +129,6 @@ class bobthebuilder : Fragment() {
         anyCpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedCpu = "any"
         }
-
-
-
-
-
-
-
-
-
         selectedGpu="any"
         // Radio button listeners for GPU
         nvidiaRadioButton.setOnCheckedChangeListener { _, isChecked ->
