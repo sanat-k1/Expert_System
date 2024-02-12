@@ -1,5 +1,6 @@
 package com.example.pchelper
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +27,8 @@ class login : AppCompatActivity() {
         login_tv =findViewById(R.id.login_tv)
         btn = findViewById(R.id.login_submit)
         db= dbUserHelper(this)
+        val sharedpref = getSharedPreferences("mypref", Context.MODE_PRIVATE)
+        var edit = sharedpref.edit()
 
         login_tv.setOnClickListener{
             var intent = Intent(this, register::class.java)
@@ -45,6 +48,10 @@ class login : AppCompatActivity() {
                 if (checkuser){
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                     //add preferences
+
+                    edit.putString("user_name", email.text.toString())
+                    edit.putString("password", pass.text.toString())
+                    edit.apply()
                     var intent = Intent(this, MainActivity::class.java)
                 }
                 else{
