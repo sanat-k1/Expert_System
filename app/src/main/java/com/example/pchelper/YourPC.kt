@@ -3,7 +3,6 @@ package com.example.pchelper
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dbController
@@ -12,7 +11,6 @@ class YourPC : AppCompatActivity() {
 
     private lateinit var dbController: dbController
     lateinit var back: FloatingActionButton
-    lateinit var btn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pc)
@@ -32,7 +30,7 @@ class YourPC : AppCompatActivity() {
         val gpuTextView = findViewById<TextView>(R.id.gpuTextView)
         val ssdTextView = findViewById<TextView>(R.id.ssdTextView)
         val ramTextView = findViewById<TextView>(R.id.ramTextView)
-        back = findViewById(R.id.floatingActionButton)
+        back= findViewById(R.id.floatingActionButton)
 
 // Display the received data in the TextViews
 
@@ -43,42 +41,11 @@ class YourPC : AppCompatActivity() {
         ssdTextView.text = "SSD Capacity: $ssdCapacity"
         ramTextView.text = "RAM Capacity: $ramCapacity"
 
-        back.setOnClickListener {
+    back.setOnClickListener {
         val intent = Intent(this,home::class.java)
         intent.putExtra("mode","yopc")
         startActivity(intent)
-
-
-        }
-        btn= findViewById(R.id.button2)
-        btn.setOnClickListener {
-            val gpuInfo = dbController.get_gpuInfo(budget.toInt(), gpuType.toString())
-            val gpuInfo2= dbController.get_gpuInfo2(budget.toInt(), gpuType.toString())
-            if (gpuInfo != null) {
-                val (gpuName, gpuPrice) = gpuInfo
-
-                val tv5 = findViewById<TextView>(R.id.textView5)
-                tv5.text = gpuName
-
-                val gpuprice = findViewById<TextView>(R.id.gpuprice)
-                gpuprice.text = gpuPrice
-            }
-            if (gpuInfo2 !=null){
-
-                val (gpuVram, gpuClock, gpuTier) = gpuInfo2
-
-                val gpuvram=findViewById<TextView>(R.id.Vram)
-                gpuvram.text = gpuVram.toString()
-
-                val gpuclock=findViewById<TextView>(R.id.clock)
-                gpuclock.text = gpuClock.toString()
-
-                val gputier=findViewById<TextView>(R.id.tier)
-                gputier.text = gpuTier.toString()
-
-
-            }
-        }
+    }
 
 
     }
