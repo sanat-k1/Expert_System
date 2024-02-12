@@ -18,7 +18,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/giphy"
+            android:src="@drawable/baseline_android_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/name"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,10 +40,10 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="304dp"
+            android:layout_width="284dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="54dp"
             android:text="Build a rig"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/botview"
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/answer"
-            android:layout_width="299dp"
+            android:layout_width="288dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
