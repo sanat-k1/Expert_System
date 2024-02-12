@@ -1,6 +1,7 @@
 package com.example.pchelper
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import dbController
 class bobthebuilder : Fragment() {
     private lateinit var usageSpinner: Spinner
@@ -43,6 +45,7 @@ class bobthebuilder : Fragment() {
 
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -87,36 +90,32 @@ class bobthebuilder : Fragment() {
                 Toast.makeText(requireContext(), "Please choose a usage", Toast.LENGTH_SHORT).show()
             }
         }
+        val minBudget = 25000 // Minimum budget in rupees
         val maxBudget = 250000 // Maximum budget in rupees
         val stepSize = 5000 // Increment step size in rupees
-
-// Set max progress based on step size
-        budgetSeekBar.max = maxBudget / stepSize
-
+// Calculate the number of steps based on the budget range and step size
+        val numSteps = (maxBudget - minBudget) / stepSize
+        budgetSeekBar.max = numSteps
 // Calculate the progress for the default value (50k)
         val defaultValue = 50000
-        val defaultProgress = defaultValue / stepSize
-
-// Set the initial value of budget to the default value (50k)
+        val defaultProgress = (defaultValue - minBudget) / stepSize
+// Set the initial value of the budget to the default value (50k)
         var budget = defaultValue
-
-// Set the progress of the budgetSeekBar to the default value
         budgetSeekBar.progress = defaultProgress
-
 // Update budget value text view with the default value
         budgetValueTextView.text = "$defaultValue INR"
-
 // Set budget seekbar progress change listener
         budgetSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // Calculate budget value based on progress and step size
-                budget = progress * stepSize
+                budget = minBudget + (progress * stepSize)
                 // Update budget value text view
                 budgetValueTextView.text = "$budget INR"
             }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
 
         selectedCpu = "any"
         // Radio button listeners for CPU

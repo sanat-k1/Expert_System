@@ -70,7 +70,6 @@
                 android:layout_height="29dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:min="25000"
                 android:max="250000"
                 android:padding="5dp"
                 android:progress="50000"
