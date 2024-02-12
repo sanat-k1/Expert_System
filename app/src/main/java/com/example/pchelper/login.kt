@@ -49,7 +49,7 @@ class login : AppCompatActivity() {
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                     //add preferences
 
-                    edit.putString("user_name", email.text.toString())
+                    edit.putString("email", email.text.toString())
                     edit.putString("password", pass.text.toString())
                     edit.apply()
                     var intent = Intent(this, MainActivity::class.java)
