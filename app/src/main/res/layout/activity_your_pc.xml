@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -73,3 +74,88 @@
         app:srcCompat="@drawable/baseline_build_24" />
 
 </RelativeLayout>
+<LinearLayout
+android:id="@+id/inflatedlayout"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="13dp"
+android:orientation="vertical"
+android:padding="16dp"
+android:visibility="invisible"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/submit_button">
+<!-- CPU Section -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/cpuImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"/>
+
+    <TextView
+        android:id="@+id/cpuNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CPU Name"
+        android:textSize="16sp"/>
+
+</LinearLayout>
+
+<!-- GPU Section -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="16dp">
+
+    <ImageView
+        android:id="@+id/gpuImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"/>
+
+    <TextView
+        android:id="@+id/gpuNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPU Name"
+        android:textSize="16sp"/>
+
+</LinearLayout>
+
+<!-- SSD and RAM Section -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="16dp">
+
+    <TextView
+        android:id="@+id/ssdTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SSD Capacity: "
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/ramTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RAM Capacity: "
+        android:textSize="16sp"/>
+
+</LinearLayout>
+
+<!-- Total Price -->
+<TextView
+    android:id="@+id/totalPriceTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:text="Total Price: "
+    android:textSize="18sp"/>
+</LinearLayout>
