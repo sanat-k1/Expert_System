@@ -1,59 +1,53 @@
-package com.example.pchelper
-
+import android.content.Context
+import android.database.Cursor
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CursorAdapter
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.pchelper.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [fag2.newInstance] factory method to
- * create an instance of this fragment.
- */
 class fag2 : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var listViewItems: ListView
+    private lateinit var dbHelper: dbController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fag2, container, false)
+        val view = inflater.inflate(R.layout.fragment_fag2, container, false)
+        listViewItems = view.findViewById(R.id.listViewItems)
+        dbHelper = dbController(requireContext())
+        displayProducts()
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment fag2.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            fag2().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun displayProducts() {
+        val cursor: Cursor? = dbHelper.getAllCPUs()
+        val adapter = ProductCursorAdapter(requireContext(), cursor)
+        listViewItems.adapter = adapter
+    }
+
+    private class ProductCursorAdapter(context: Context, cursor: Cursor?) : CursorAdapter(context, cursor, 0) {
+
+        override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
+            return LayoutInflater.from(context).inflate(R.layout.list_item_product, parent, false)
+        }
+
+
+
+
+        override fun bindView(view: View?, context: Context?, cursor: Cursor?) {
+            val productName = cursor?.getString(cursor.getColumnIndex(dbController.CPU_NAME))
+            val productPrice = cursor?.getDouble(cursor.getColumnIndex(dbController.CPU_PRICE))
+            val productImageResId = context?.resources?.getIdentifier("drawable/${productName?.toLowerCase()}", null, context.packageName)
+
+            view?.findViewById<ImageView>(R.id.componentImage)?.setImageResource(productImageResId ?: R.drawable.default_image)
+            view?.findViewById<TextView>(R.id.componentName)?.text = productName
+            view?.findViewById<TextView>(R.id.componentPrice)?.text = productPrice.toString()
+        }
     }
 }

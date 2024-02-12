@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.pchelper.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import fag2
 
 class home : AppCompatActivity() {
     lateinit var bottomNavigationMenuView: BottomNavigationView
