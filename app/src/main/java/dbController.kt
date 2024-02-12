@@ -6,46 +6,46 @@ class dbController(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-         const val DATABASE_NAME = "my_database.db"
-         const val DATABASE_VERSION = 1
+        const val DATABASE_NAME = "my_database.db"
+        const val DATABASE_VERSION = 1
 
         // CPU table
-         const val TABLE_CPU = "cpu"
-         const val CPU_ID = "ID"
-         const val CPU_NAME = "CPU_name"
-         const val CPU_PRICE = "CPU_price"
-         const val CPU_TIER = "Tier"
-         const val CPU_BASE_CLOCK = "Base_clk"
-         const val CPU_MAX_CLOCK = "Max_clk"
-         const val CPU_CORES = "Cores"
-         const val CPU_THREADS = "Threads"
-         const val CPU_IMG = "Image"
+        const val TABLE_CPU = "cpu"
+        const val CPU_ID = "ID"
+        const val CPU_NAME = "CPU_name"
+        const val CPU_PRICE = "CPU_price"
+        const val CPU_TIER = "Tier"
+        const val CPU_BASE_CLOCK = "Base_clk"
+        const val CPU_MAX_CLOCK = "Max_clk"
+        const val CPU_CORES = "Cores"
+        const val CPU_THREADS = "Threads"
+        const val CPU_IMG = "Image"
 
         // GPU table
-         const val TABLE_GPU = "gpu"
-         const val GPU_ID = "ID"
-         const val GPU_NAME = "GPU_name"
-         const val GPU_PRICE = "GPU_price"
-         const val GPU_VRAM = "VRAM"
-         const val GPU_CLOCK_SPEED = "Clock_speed"
-         const val GPU_TIER = "Tier"
-         const val GPU_IMG = "Image"
+        const val TABLE_GPU = "gpu"
+        const val GPU_ID = "ID"
+        const val GPU_NAME = "GPU_name"
+        const val GPU_PRICE = "GPU_price"
+        const val GPU_VRAM = "VRAM"
+        const val GPU_CLOCK_SPEED = "Clock_speed"
+        const val GPU_TIER = "Tier"
+        const val GPU_IMG = "Image"
 
         // SSD table
-         const val TABLE_SSD = "ssd"
-         const val SSD_ID = "ID"
-         const val SSD_PRICE = "SSD_price"
-         const val SSD_CAPACITY = "Capacity"
+        const val TABLE_SSD = "ssd"
+        const val SSD_ID = "ID"
+        const val SSD_PRICE = "SSD_price"
+        const val SSD_CAPACITY = "Capacity"
 
         // RAM table
-         const val TABLE_RAM = "ram"
-         const val RAM_ID = "ID"
-         const val RAM_PRICE = "RAM_price"
-         const val RAM_CAPACITY = "Capacity"
-         const val RAM_TYPE = "Type"
+        const val TABLE_RAM = "ram"
+        const val RAM_ID = "ID"
+        const val RAM_PRICE = "RAM_price"
+        const val RAM_CAPACITY = "Capacity"
+        const val RAM_TYPE = "Type"
 
         // SQL statement for creating CPU table
-         const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
+        const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
                 "$CPU_ID INTEGER PRIMARY KEY," +
                 "$CPU_NAME TEXT," +
                 "$CPU_PRICE REAL," +
@@ -58,7 +58,7 @@ class dbController(context: Context) :
                 ")"
 
         // SQL statement for creating GPU table
-         const val CREATE_TABLE_GPU = "CREATE TABLE $TABLE_GPU (" +
+        const val CREATE_TABLE_GPU = "CREATE TABLE $TABLE_GPU (" +
                 "$GPU_ID INTEGER PRIMARY KEY," +
                 "$GPU_NAME TEXT," +
                 "$GPU_PRICE INTEGER," +
@@ -69,14 +69,14 @@ class dbController(context: Context) :
                 ")"
 
         // SQL statement for creating SSD table
-         const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
+        const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
                 "$SSD_ID INTEGER PRIMARY KEY," +
                 "$SSD_PRICE INTEGER," +
                 "$SSD_CAPACITY INTEGER" +
                 ")"
 
         // SQL statement for creating RAM table
-         const val CREATE_TABLE_RAM = "CREATE TABLE $TABLE_RAM (" +
+        const val CREATE_TABLE_RAM = "CREATE TABLE $TABLE_RAM (" +
                 "$RAM_ID INTEGER PRIMARY KEY," +
                 "$RAM_PRICE INTEGER," +
                 "$RAM_CAPACITY INTEGER," +
@@ -149,7 +149,7 @@ class dbController(context: Context) :
         db.execSQL(
             "INSERT INTO $TABLE_SSD ($SSD_ID, $SSD_PRICE, $SSD_CAPACITY) VALUES " +
                     "(1, 1500, 256), " +
-                    "(2, 3000, 500), " +
+                    "(2, 3000, 512), " +
                     "(3, 6000, 1024), " +
                     "(4, 10000, 2048), " +
                     "(5, 20000, 4096)"
@@ -180,6 +180,35 @@ class dbController(context: Context) :
         // Recreate CPU, GPU, SSD, and RAM tables
         onCreate(db)
     }
+
+    fun showSsd(capacity: String): Int {
+        var db = writableDatabase
+        var cap = capacity.toInt()
+        var value: Int = 0
+
+        // Execute the query
+        val cursor = db.rawQuery(
+            "SELECT $SSD_PRICE FROM $TABLE_SSD WHERE $SSD_CAPACITY = ?",
+            arrayOf(cap.toString())
+        )
+
+        // Check if the cursor contains any rows
+        if (cursor.moveToFirst()) {
+            // Retrieve the value from the first row
+            value = cursor.getInt(0)
+        }
+
+        // Close the cursor and database to release resources
+        cursor.close()
+        db.close()
+
+        return value
+    }
+
+
+
+
+
 
 //    fun getAllCPUNames(): List<String> {
 //        val cpuNames = mutableListOf<String>()

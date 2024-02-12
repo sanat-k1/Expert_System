@@ -33,12 +33,14 @@ class YourPC : AppCompatActivity() {
         back= findViewById(R.id.floatingActionButton)
 
 // Display the received data in the TextViews
+
         usageTextView.text = "Usage: $usage"
         budgetTextView.text = "Budget: $budget INR"
         cpuTextView.text = "CPU: $cpuType"
         gpuTextView.text = "GPU: $gpuType"
         ssdTextView.text = "SSD Capacity: $ssdCapacity"
         ramTextView.text = "RAM Capacity: $ramCapacity"
+
     back.setOnClickListener {
         val intent = Intent(this,home::class.java)
         intent.putExtra("mode","yopc")

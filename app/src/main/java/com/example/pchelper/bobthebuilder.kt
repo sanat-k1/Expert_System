@@ -14,6 +14,7 @@ import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import dbController
 
 
 class bobthebuilder : Fragment() {
@@ -53,6 +54,7 @@ class bobthebuilder : Fragment() {
         usageSpinner = view.findViewById(R.id.usageSpinner)
         budgetSeekBar = view.findViewById(R.id.budgetSeekBar)
         budgetValueTextView = view.findViewById(R.id.budgetValueTextView)
+        val dbController = dbController(requireContext())
         intelRadioButton = view.findViewById(R.id.intelRadioButton)
         amdRadioButton = view.findViewById(R.id.amdRadioButton)
         anyCpuRadioButton = view.findViewById(R.id.anyCpuRadioButton)
@@ -223,6 +225,7 @@ class bobthebuilder : Fragment() {
             val selectedGpuType = selectedGpu
             val selectedSsdCapacity = selectedSsd
             val selectedRamCapacity = selectedRam
+            val ssdPrice = dbController.showSsd("256")
 
             // Create an Intent to start the new activity
             val intent = Intent(requireContext(),YourPC::class.java)
@@ -232,7 +235,7 @@ class bobthebuilder : Fragment() {
             intent.putExtra("budget", selectedBudget)
             intent.putExtra("cpuType", selectedCpuType)
             intent.putExtra("gpuType", selectedGpuType)
-            intent.putExtra("ssdCapacity", selectedSsdCapacity)
+            intent.putExtra("ssdCapacity", ssdPrice)
             intent.putExtra("ramCapacity", selectedRamCapacity)
 
 //             Start the new activity
