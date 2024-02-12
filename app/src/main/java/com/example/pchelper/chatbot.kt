@@ -140,6 +140,27 @@ class chatbot : Fragment() {
         return checkAllMessages(splitMessage)
     }
     private fun checkAllMessages(message: List<String>): String {
+        val responses = mapOf(
+            "hello" to "Hello! How can I help you today?",
+            "hi" to "Hi there! What can I assist you with?",
+            "how are you" to "I'm just a computer program, but I'm here to assist you!",
+            "good morning" to "Good morning! What brings you here today?",
+            "good afternoon" to "Good afternoon! How can I assist you?",
+            "good evening" to "Good evening! How can I help you today?",
+            "bye" to "Goodbye! Don't hesitate to return if you have more questions."
+        )
+        for (word in message) {
+            val response = responses[word.toLowerCase()]
+            if (response != null) {
+                return response
+            }
+        }
+        // If no casual response is found, proceed with checking for technical responses
+        val technicalResponse = checkTechnicalMessages(message)
+        return technicalResponse
+    }
+
+    private fun checkTechnicalMessages(message: List<String>): String {
         val responses = listOf(
             "Your computer might be overheating. Check if the fans are working properly and clean any dust buildup.",
             "If your PC is slow, try freeing up disk space by deleting unnecessary files and programs.",
@@ -172,11 +193,10 @@ class chatbot : Fragment() {
             messageProbability(message, response.split(" ").toSet())
         }
 
-        val bestMatch = probabilities.maxByOrNull { it.value }?.key
-
+        val filteredProbabilities = probabilities.filter { it.value > 0.45 }
+        val bestMatch = filteredProbabilities.maxByOrNull { it.value }?.key
         return bestMatch ?: "I'm sorry, I don't have enough information to diagnose the issue."
     }
-
 
     private fun messageProbability(userMessage: List<String>, recognizedWords: Set<String>): Int {
         val messageCertainty = userMessage.count { it in recognizedWords }

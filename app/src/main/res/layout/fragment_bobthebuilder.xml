@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bobthebuilder">
+    tools:context=".bobthebuilder"
+    android:layout_marginTop="45dp">
 
     <ScrollView
         android:layout_width="match_parent"
