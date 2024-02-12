@@ -11,6 +11,7 @@
     <ImageView
         android:layout_width="66dp"
         android:layout_height="71dp"
+        android:id="@+id/cmlist"
         android:layout_marginStart="29dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="316dp"
@@ -21,6 +22,7 @@
 
     <TextView
         android:layout_width="wrap_content"
+        android:id="@+id/teeeeets"
         android:layout_height="wrap_content"
         android:layout_marginStart="47dp"
         android:layout_marginTop="110dp"
