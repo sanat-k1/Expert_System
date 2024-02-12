@@ -1,4 +1,5 @@
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -204,31 +205,82 @@ class dbController(context: Context) :
 
         return value
     }
+    fun get_gpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
+        return try {
+            val db = readableDatabase
+            val cursor: Cursor?
 
+            // Build the SQL query based on the provided parameters
+            val query = when {
+                price != null && type != "any" -> {
+                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
+                }
+                price != null -> {
+                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
+                }
+                else -> {
+                    // No valid parameters provided
+                    return null
+                }
+            }
 
+            // Execute the query with appropriate arguments
+            cursor = db.rawQuery(query, arrayOf(price.toString()))
 
+            cursor.use {
+                if (cursor.moveToFirst()) {
+                    val gpuVram = cursor.getInt(0)
+                    val gpuClockspeed = cursor.getInt(1)
+                    val gpuTier = cursor.getInt(2)
 
+                    Triple(gpuVram, gpuClockspeed, gpuTier)
+                } else {
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Handle database query error gracefully
+            e.printStackTrace()
+            null
+        }
+    }
 
+    fun get_gpuInfo(price: Int? = null, type: String? = null): Pair<String, String>? {
+        return try {
+            val db = readableDatabase
+            val cursor: Cursor?
 
-//    fun getAllCPUNames(): List<String> {
-//        val cpuNames = mutableListOf<String>()
-//        val db = this.readableDatabase
-//        val query = "SELECT $CPU_NAME FROM $TABLE_CPU"
-//        val cursor = db.rawQuery(query, null)
-//        cursor.use {
-//            while (it.moveToNext()) {
-//                val cpuNameIndex = it.getColumnIndex(CPU_NAME)
-//                if (cpuNameIndex != -1) {
-//                    val cpuName = it.getString(cpuNameIndex)
-//                    cpuNames.add(cpuName)
-//                } else {
-//                    // If column index is -1, return an empty list to indicate an error
-//                    return emptyList()
-//                }
-//            }
-//        }
-//        return cpuNames
-//    }
+            // Build the SQL query based on the provided parameters
+            val query = when {
+                price != null && type != "any" -> {
+                    "SELECT $GPU_NAME, $GPU_PRICE FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
+                }
+                type == "any" -> {
+                    "SELECT $GPU_NAME, $GPU_PRICE FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
+                }
+                else -> {
+                    // No valid parameters provided
+                    return null
+                }
+            }
+
+            // Execute the query with appropriate arguments
+            cursor = db.rawQuery(query, arrayOf(price.toString()))
+
+            cursor.use {
+                if (cursor.moveToFirst()) {
+                    Pair(cursor.getString(0), cursor.getString(1))
+                } else {
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Handle database query error gracefully
+            e.printStackTrace()
+            null
+        }
+    }
+
 
 
 }
