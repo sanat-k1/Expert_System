@@ -208,7 +208,7 @@ class bobthebuilder : Fragment() {
             val selectedGpuType = selectedGpu
             val selectedSsdCapacity = selectedSsd
             val selectedRamCapacity = selectedRam
-            val ssdPrice = dbController.showSsd("256")
+
 
             // Create an Intent to start the new activity
             val intent = Intent(requireContext(),YourPC::class.java)
@@ -220,8 +220,6 @@ class bobthebuilder : Fragment() {
             intent.putExtra("gpuType", selectedGpuType)
             intent.putExtra("ssdCapacity", selectedSsdCapacity)
             intent.putExtra("ramCapacity", selectedRamCapacity)
-
-//             Start the new activity
 //             Start the new activity
             requireContext().startActivity(intent)
 
