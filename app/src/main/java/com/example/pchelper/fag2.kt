@@ -14,6 +14,7 @@ import com.example.pchelper.R
 class fag2 : Fragment() {
     private lateinit var cpu : RecyclerView
     private lateinit var gpu : RecyclerView
+    private lateinit var cpu1 : RecyclerView
     private lateinit var dbHelper: dbController
 
     override fun onCreateView(
@@ -22,8 +23,11 @@ class fag2 : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_fag2, container, false)
 
-        cpu = view.findViewById(R.id.recyclerView)
-        gpu = view.findViewById(R.id.recyclerView2)
+        cpu = view.findViewById(R.id.cpu)
+        gpu = view.findViewById(R.id.gpu)
+        cpu1 = view.findViewById(R.id.cpu2)
+
+
 
         return view
     }
