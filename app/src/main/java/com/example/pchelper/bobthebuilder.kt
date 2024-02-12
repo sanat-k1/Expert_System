@@ -235,7 +235,7 @@ class bobthebuilder : Fragment() {
             intent.putExtra("budget", selectedBudget)
             intent.putExtra("cpuType", selectedCpuType)
             intent.putExtra("gpuType", selectedGpuType)
-            intent.putExtra("ssdCapacity", ssdPrice)
+            intent.putExtra("ssdCapacity", selectedSsdCapacity)
             intent.putExtra("ramCapacity", selectedRamCapacity)
 
 //             Start the new activity

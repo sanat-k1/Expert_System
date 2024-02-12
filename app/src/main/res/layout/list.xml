@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="26dp"
-            android:text="cum "
+            android:text="yo"
             app:layout_constraintStart_toEndOf="@+id/cmlist"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

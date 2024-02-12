@@ -10,11 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cpu"
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
