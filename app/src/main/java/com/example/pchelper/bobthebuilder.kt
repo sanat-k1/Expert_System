@@ -94,9 +94,24 @@ class bobthebuilder : Fragment() {
 
         val maxBudget = 250000 // Maximum budget in rupees
         val stepSize = 5000 // Increment step size in rupees
-        budgetSeekBar.max = maxBudget / stepSize // Set max progress based on step size
 
-        // Set budget seekbar progress change listener
+// Set max progress based on step size
+        budgetSeekBar.max = maxBudget / stepSize
+
+// Calculate the progress for the default value (50k)
+        val defaultValue = 50000
+        val defaultProgress = defaultValue / stepSize
+
+// Set the initial value of budget to the default value (50k)
+        var budget = defaultValue
+
+// Set the progress of the budgetSeekBar to the default value
+        budgetSeekBar.progress = defaultProgress
+
+// Update budget value text view with the default value
+        budgetValueTextView.text = "$defaultValue INR"
+
+// Set budget seekbar progress change listener
         budgetSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // Calculate budget value based on progress and step size
@@ -108,6 +123,7 @@ class bobthebuilder : Fragment() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
+        selectedCpu = "any"
         // Radio button listeners for CPU
         intelRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedCpu = "Intel"
@@ -120,12 +136,18 @@ class bobthebuilder : Fragment() {
         }
 
 
+
+
+
+
+
+        selectedGpu="any"
         // Radio button listeners for GPU
         nvidiaRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedGpu = "Nvidia"
         }
         amdGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) selectedCpu = "AMD"
+            if (isChecked) selectedGpu = "AMD"
         }
         anyGpuRadioButton.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) selectedGpu = "any"
@@ -135,17 +157,20 @@ class bobthebuilder : Fragment() {
         val ssdCapacities = listOf(256, 512, 1024, 2048, 4096)
         val maxSsdProgress = ssdCapacities.size - 1
         val ssdStepSize = 1
-        ssdCapacitySeekBar.max = maxSsdProgress // Set max progress based on the number of capacities
-        ssdCapacitySeekBar.progress = 0 // Set initial progress
 
-        // Set available RAM capacities and their corresponding progress values
-        val ramCapacities = listOf(8, 16, 32, 64, 128)
-        val maxRamProgress = ramCapacities.size - 1
-        val ramStepSize = 1
-        ramCapacitySeekBar.max = maxRamProgress // Set max progress based on the number of capacities
-        ramCapacitySeekBar.progress = 0 // Set initial progress
+// Set max progress based on the number of capacities
+        ssdCapacitySeekBar.max = maxSsdProgress
 
-        // Set listener for SSD capacity seekbar
+// Set initial progress and selected SSD capacity
+        val defaultSsdIndex = 0
+        val defaultSsdCapacity = "${ssdCapacities[defaultSsdIndex]}GB"
+        ssdCapacitySeekBar.progress = defaultSsdIndex
+        selectedSsd = defaultSsdCapacity
+
+// Update SSD capacity text view with the default capacity
+        ssdCapacityValueTextView.text = defaultSsdCapacity
+
+// Set listener for SSD capacity seekbar
         ssdCapacitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // Calculate SSD capacity based on progress index
@@ -158,7 +183,24 @@ class bobthebuilder : Fragment() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
-        // Set listener for RAM capacity seekbar
+// Set available RAM capacities and their corresponding progress values
+        val ramCapacities = listOf(8, 16, 32, 64, 128)
+        val maxRamProgress = ramCapacities.size - 1
+        val ramStepSize = 1
+
+// Set max progress based on the number of capacities
+        ramCapacitySeekBar.max = maxRamProgress
+
+// Set initial progress and selected RAM capacity
+        val defaultRamIndex = 0
+        val defaultRamCapacity = "${ramCapacities[defaultRamIndex]}GB"
+        ramCapacitySeekBar.progress = defaultRamIndex
+        selectedRam = defaultRamCapacity
+
+// Update RAM capacity text view with the default capacity
+        ramCapacityValueTextView.text = defaultRamCapacity
+
+// Set listener for RAM capacity seekbar
         ramCapacitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 // Calculate RAM capacity based on progress index
@@ -170,6 +212,7 @@ class bobthebuilder : Fragment() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
         submitButton.setOnClickListener {
             // Gather all the selected values
             val selectedUsage = userUsage
@@ -180,7 +223,7 @@ class bobthebuilder : Fragment() {
             val selectedRamCapacity = selectedRam
 
             // Create an Intent to start the new activity
-            val intent = Intent(requireContext(), YourPC::class.java)
+            val intent = Intent(requireContext(),YourPC::class.java)
 
             // Pass the gathered values to the intent as extras
             intent.putExtra("usage", selectedUsage)
@@ -190,9 +233,12 @@ class bobthebuilder : Fragment() {
             intent.putExtra("ssdCapacity", selectedSsdCapacity)
             intent.putExtra("ramCapacity", selectedRamCapacity)
 
-            // Start the new activity
-            startActivity(intent)
+//             Start the new activity
+//             Start the new activity
+            requireContext().startActivity(intent)
+
         }
         return view
     }
+
 }

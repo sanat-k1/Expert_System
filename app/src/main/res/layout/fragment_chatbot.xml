@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".chatbot">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="550dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="411dp"
+            android:layout_height="573dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toTopOf="@+id/editText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -30,8 +29,9 @@
             android:layout_width="262dp"
             android:layout_height="59dp"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="17dp"
+            android:layout_marginBottom="28dp"
             android:hint="Ask your question"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button"
@@ -72,9 +72,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="17dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="37dp"
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
