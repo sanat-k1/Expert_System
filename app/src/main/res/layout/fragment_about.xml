@@ -39,20 +39,25 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person 1"
+                        android:text="Shreesha Bhat B"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Role: Developer"
+                        android:text="Role: Lead Developer"
                         android:textSize="16sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et luctus sem."
+                        android:text="USN: 1BM21IS165"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="mail: shreesha.is21@bmsce.ac.in"
                         android:textSize="16sp"/>
 
                 </LinearLayout>
@@ -80,7 +85,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Person 2"
+                        android:text="Vishal S"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
@@ -93,7 +98,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et luctus sem."
+                        android:text="USN: 1BM21IS206"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="mail: vishal.is21@bmsce.ac.in"
                         android:textSize="16sp"/>
 
                 </LinearLayout>
