@@ -4,106 +4,153 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".about">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="40dp">
+
+        <!-- Person 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginTop="40dp">
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp">
 
-            <!-- Person 1 -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_person_24"
+                android:scaleType="centerCrop"
+                android:contentDescription="Person 1" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="20dp">
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/baseline_person_24"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Person 1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:text="Shreesha Bhat B"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Shreesha Bhat B"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Role: Lead Developer"
-                        android:textSize="16sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="USN: 1BM21IS165"
-                        android:textSize="16sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="mail: shreesha.is21@bmsce.ac.in"
-                        android:textSize="16sp"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Person 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/baseline_person_24"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Person 2" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:text="Role: Lead Developer"
+                    android:textSize="16sp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vishal S"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USN: 1BM21IS165"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mail: shreesha.is21@bmsce.ac.in"
+                    android:textSize="16sp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Role: Designer"
-                        android:textSize="16sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="USN: 1BM21IS206"
-                        android:textSize="16sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="mail: vishal.is21@bmsce.ac.in"
-                        android:textSize="16sp"/>
-
-                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
+        <!-- Person 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_person_24"
+                android:scaleType="centerCrop"
+                android:contentDescription="Person 2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sanat K"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role: Lead Developer"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USN: 1BM21ISXXX"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mail: sanat.is21@bmsce.ac.in"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- Person 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_person_24"
+                android:scaleType="centerCrop"
+                android:contentDescription="Person 3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vishal S"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role: Designer"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USN: 1BM21IS206"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mail: vishal.is21@bmsce.ac.in"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>
