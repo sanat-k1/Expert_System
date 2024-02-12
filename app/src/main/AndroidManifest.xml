@@ -15,6 +15,8 @@
         <activity
             android:name=".register"
             android:exported="false" />
+
+
         <activity
             android:name=".login"
             android:exported="false" />
@@ -31,5 +33,5 @@
             </intent-filter>
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.SENDTO" />
 </manifest>
