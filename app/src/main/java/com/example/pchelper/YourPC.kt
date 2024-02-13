@@ -98,7 +98,7 @@ class YourPC : AppCompatActivity() {
                 val name = findViewById<TextView>(R.id.gpuname)
                 name.text = gpuName
                 val gpuprice = findViewById<TextView>(R.id.gpuprice)
-                gpuprice.text = gpuPrice
+                gpuprice.text = "Rs." +gpuPrice
             } else {
                 // Handle case when GPU is not found
                 val tv5 = findViewById<TextView>(R.id.gpuname)
@@ -111,14 +111,14 @@ class YourPC : AppCompatActivity() {
             if (gpuInfo2 != null) {
                 val (gpuVram, gpuClock, gpuimg) = gpuInfo2
                 val vram = findViewById<TextView>(R.id.gpuvram)
-                vram.text = gpuVram.toString()
+                vram.text = gpuVram.toString()+"GB"
                 val clock = findViewById<TextView>(R.id.gpuclock)
-                clock.text = gpuClock.toString()
+                clock.text = gpuClock.toString()+" GHz"
                 val img = findViewById<ImageView>(R.id.imageView)
                 // Construct the resource identifier dynamically
-                val resourceId = resources.getIdentifier(gpuimg, "drawable", packageName)
-                // Set the image resource using the constructed identifier
-                img.setImageResource(resourceId)
+//                val resourceId = resources.getIdentifier(gpuimg, "drawable", packageName)
+//                // Set the image resource using the constructed identifier
+//                img.setImageResource(resourceId)
             } else {
                 // Handle case when GPU is not found
                 val vram = findViewById<TextView>(R.id.gpuvram)
@@ -133,7 +133,7 @@ class YourPC : AppCompatActivity() {
                 val name = findViewById<TextView>(R.id.cpuname)
                 name.text = cpuname.toString()
                 val price = findViewById<TextView>(R.id.cpuprice)
-                price.text = cpuprice.toString()
+                price.text = "Rs." +cpuprice.toString()
                 val img = findViewById<ImageView>(R.id.cpuimg)
                 // Construct the resource identifier dynamically
                 val resourceId = resources.getIdentifier(cpuimg, "drawable", packageName)
@@ -155,7 +155,7 @@ class YourPC : AppCompatActivity() {
             val core = findViewById<TextView>(R.id.cpucore)
             core.text = cpucore.toString()
             val clock = findViewById<TextView>(R.id.cpuclock)
-            clock.text = cpuclock.toString() }
+            clock.text = cpuclock.toString()+" GHz" }
         else {
           // Handle case when GPU is not found
            val core = findViewById<TextView>(R.id.cpucore)
