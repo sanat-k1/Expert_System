@@ -203,7 +203,7 @@ class dbController(context: Context) :
         }
     }
 
-    fun get_gpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
+    fun get_gpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, String>? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
@@ -211,10 +211,10 @@ class dbController(context: Context) :
             // Build the SQL query based on the provided parameters
             val query = when {
                 price != null && type != "any" -> {
-                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
+                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_IMG FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
                 }
                 price != null -> {
-                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
+                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_IMG FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
                 }
                 else -> {
                     // No valid parameters provided
@@ -229,7 +229,7 @@ class dbController(context: Context) :
                 if (cursor.moveToFirst()) {
                     val gpuVram = cursor.getInt(0)
                     val gpuClockspeed = cursor.getInt(1)
-                    val gpuTier = cursor.getInt(2)
+                    val gpuTier = cursor.getString(2)
 
                     Triple(gpuVram, gpuClockspeed, gpuTier)
                 } else {

@@ -107,11 +107,13 @@ class YourPC : AppCompatActivity() {
 
             val gpuInfo2 = dbController.get_gpuInfo2(budget.toInt(), gpuType.toString())
             if (gpuInfo2 != null) {
-                val (gpuVram, gpuClock, gpuTier) = gpuInfo2
+                val (gpuVram, gpuClock, gpuimg) = gpuInfo2
                 val vram = findViewById<TextView>(R.id.gpuvram)
                 vram.text = gpuVram.toString()
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = gpuClock.toString()
+                val img = findViewById<ImageView>(R.id.imageView)
+                //the code
             } else {
                 // Handle case when GPU is not found
                 val vram = findViewById<TextView>(R.id.gpuvram)
