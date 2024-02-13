@@ -182,15 +182,35 @@ class dbController(context: Context) :
         onCreate(db)
     }
 
-    fun getSSDPrice(ssdCapacity: String? = null): String? {
+    fun get_cpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
-            val query = "SELECT $SSD_PRICE FROM $TABLE_SSD WHERE $SSD_CAPACITY LIKE '%$ssdCapacity%'"
-            cursor = db.rawQuery(query,null)
+
+            // Build the SQL query based on the provided parameters
+            val query = when {
+                price != null && type != "any" -> {
+                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
+                }
+                price != null -> {
+                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
+                }
+                else -> {
+                    // No valid parameters provided
+                    return null
+                }
+            }
+
+            // Execute the query with appropriate arguments
+            cursor = db.rawQuery(query, arrayOf(price.toString()))
+
             cursor.use {
                 if (cursor.moveToFirst()) {
-                    cursor.getString(0)
+                    val gpuVram = cursor.getInt(0)
+                    val gpuClockspeed = cursor.getInt(1)
+                    val gpuTier = cursor.getInt(2)
+
+                    Triple(gpuVram, gpuClockspeed, gpuTier)
                 } else {
                     null
                 }
