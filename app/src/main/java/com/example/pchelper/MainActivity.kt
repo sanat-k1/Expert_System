@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         var question: String
         var answer : String
 
@@ -89,4 +91,5 @@ answer= "i dont know boss"
         }
         recyclerView.adapter = QAAdapter(newaar)
     }
+
 }
