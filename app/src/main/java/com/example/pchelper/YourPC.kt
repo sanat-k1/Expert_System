@@ -51,7 +51,9 @@ class YourPC : AppCompatActivity() {
         }
         btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
-
+            val sPrice = dbController.getSSDPrice(ssdCapacity)
+            val ssdprice = findViewById<TextView>(R.id.ssdPrice)
+            ssdprice.text= sPrice
             val gpuInfo = dbController.get_gpuInfo(budget, gpuType.toString())
 
             if (gpuInfo != null) {
@@ -75,14 +77,16 @@ class YourPC : AppCompatActivity() {
                 vram.text = gpuVram.toString()
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = gpuClock.toString()
-
+                val tier = findViewById<TextView>(R.id.gputier)
+                tier.text = gpuTier.toString()
             } else {
                 // Handle case when GPU is not found
                 val vram = findViewById<TextView>(R.id.gpuvram)
                 vram.text = "not found"
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = "not found"
-
+                val tier = findViewById<TextView>(R.id.gputier)
+                tier.text = "not found"
             }
 
             val cpuinfo = dbController.get_cpuInfo(budget.toInt(), cpuType.toString())

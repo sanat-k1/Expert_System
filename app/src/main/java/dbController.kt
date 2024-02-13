@@ -32,19 +32,6 @@ class dbController(context: Context) :
         const val GPU_TIER = "Tier"
         const val GPU_IMG = "Image"
 
-        // SSD table
-        const val TABLE_SSD = "ssd"
-        const val SSD_ID = "ID"
-        const val SSD_PRICE = "SSD_price"
-        const val SSD_CAPACITY = "Capacity"
-
-        // RAM table
-        const val TABLE_RAM = "ram"
-        const val RAM_ID = "ID"
-        const val RAM_PRICE = "RAM_price"
-        const val RAM_CAPACITY = "Capacity"
-        const val RAM_TYPE = "Type"
-
         // SQL statement for creating CPU table
         const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
                 "$CPU_ID INTEGER PRIMARY KEY," +
@@ -69,20 +56,6 @@ class dbController(context: Context) :
                 "$GPU_IMG TEXT" +
                 ")"
 
-        // SQL statement for creating SSD table
-        const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
-                "$SSD_ID INTEGER PRIMARY KEY," +
-                "$SSD_PRICE INTEGER," +
-                "$SSD_CAPACITY TEXT" +
-                ")"
-
-        // SQL statement for creating RAM table
-        const val CREATE_TABLE_RAM = "CREATE TABLE $TABLE_RAM (" +
-                "$RAM_ID INTEGER PRIMARY KEY," +
-                "$RAM_PRICE INTEGER," +
-                "$RAM_CAPACITY INTEGER," +
-                "$RAM_TYPE TEXT" +
-                ")"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -90,10 +63,6 @@ class dbController(context: Context) :
         db.execSQL(CREATE_TABLE_CPU)
         // Create GPU table
         db.execSQL(CREATE_TABLE_GPU)
-        // Create SSD table
-        db.execSQL(CREATE_TABLE_SSD)
-        // Create RAM table
-        db.execSQL(CREATE_TABLE_RAM)
 
 
         // Insert data into CPU table
@@ -146,27 +115,6 @@ class dbController(context: Context) :
                     "(22, 'AMD Radeon RX 6600', 20000, 8, 2491, 1, 'r6600'), " +
                     "(23, 'AMD Radeon RX 6400', 12000, 4, 2325, 0, 'r6400') "
         )
-        // Insert data into SSD table
-        db.execSQL(
-            "INSERT INTO $TABLE_SSD ($SSD_ID, $SSD_PRICE, $SSD_CAPACITY) VALUES " +
-                    "(1, 1500, '256'), " +
-                    "(2, 3000, '512'), " +
-                    "(3, 6000, '1024'), " +
-                    "(4, 10000, '2048'), " +
-                    "(5, 20000, '4096')"
-        )
-
-        // Insert data into RAM table
-        db.execSQL(
-            "INSERT INTO $TABLE_RAM ($RAM_ID, $RAM_PRICE, $RAM_CAPACITY, $RAM_TYPE) VALUES " +
-                    "(1, 2000, 8, 'DDR4'), " +
-                    "(2, 4000, 16, 'DDR4'), " +
-                    "(3, 8000, 32, 'DDR4'), " +
-                    "(4, 15000, 64, 'DDR4'), " +
-                    "(5, 32000, 128, 'DDR4')"
-        )
-
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -174,11 +122,7 @@ class dbController(context: Context) :
         db.execSQL("DROP TABLE IF EXISTS $TABLE_CPU")
         // Drop GPU table if it exists
         db.execSQL("DROP TABLE IF EXISTS $TABLE_GPU")
-        // Drop SSD table if it exists
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_SSD")
-        // Drop RAM table if it exists
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_RAM")
-        // Recreate CPU, GPU, SSD, and RAM tables
+        // Recreate CPU, GPU
         onCreate(db)
     }
 
@@ -334,7 +278,5 @@ class dbController(context: Context) :
             null
         }
     }//gpu query
-
-
 
 }
