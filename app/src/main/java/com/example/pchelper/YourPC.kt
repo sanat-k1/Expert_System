@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dbController
 
@@ -14,6 +15,13 @@ class YourPC : AppCompatActivity() {
     private lateinit var dbController: dbController
     lateinit var back: FloatingActionButton
     lateinit var btn: Button
+    private val ssdPriceMap = mapOf(
+        "256GB" to 1500,
+        "512GB" to 3000,
+        "1024GB" to 6000,
+        "2048GB" to 12000,
+        "4096GB" to 20000
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pc)
@@ -51,9 +59,16 @@ class YourPC : AppCompatActivity() {
         }
         btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
-            val sPrice = dbController.getSSDPrice(ssdCapacity)
             val ssdprice = findViewById<TextView>(R.id.ssdPrice)
-            ssdprice.text= sPrice
+            val ssdPrice = ssdPriceMap[ssdCapacity]
+            if (ssdPrice != null) {
+                // Store the SSD price in a variable
+                val ssdPriceVariable = ssdPrice
+                ssdprice.text= ssdPrice.toString()
+            } else {
+                // Handle the case where the price is not found for the capacity
+                Toast.makeText(this, "Price not found for SSD capacity: $ssdCapacity", Toast.LENGTH_SHORT).show()
+            }
             val gpuInfo = dbController.get_gpuInfo(budget, gpuType.toString())
 
             if (gpuInfo != null) {
