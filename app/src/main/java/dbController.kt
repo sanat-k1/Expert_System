@@ -182,7 +182,7 @@ class dbController(context: Context) :
         onCreate(db)
     }
 
-    fun get_cpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
+    fun get_cpuInfo(price: Int? = null, type: String? = null): Triple<String, String, String>? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
@@ -190,10 +190,10 @@ class dbController(context: Context) :
             // Build the SQL query based on the provided parameters
             val query = when {
                 price != null && type != "any" -> {
-                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
+                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_IMG FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
                 }
-                price != null -> {
-                    "SELECT $GPU_VRAM, $GPU_CLOCK_SPEED, $GPU_TIER FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
+                type == "any" -> {
+                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_IMG FROM $TABLE_CPU WHERE $CPU_PRICE <= ? "
                 }
                 else -> {
                     // No valid parameters provided
@@ -206,11 +206,48 @@ class dbController(context: Context) :
 
             cursor.use {
                 if (cursor.moveToFirst()) {
-                    val gpuVram = cursor.getInt(0)
-                    val gpuClockspeed = cursor.getInt(1)
-                    val gpuTier = cursor.getInt(2)
+                    Triple(cursor.getString(0), cursor.getString(1), cursor.getString(2))
+                } else {
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Handle database query error gracefully
+            e.printStackTrace()
+            null
+        }
+    }//gpu query
 
-                    Triple(gpuVram, gpuClockspeed, gpuTier)
+
+    fun get_cpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
+        return try {
+            val db = readableDatabase
+            val cursor: Cursor?
+
+            // Build the SQL query based on the provided parameters
+            val query = when {
+                price != null && type != "any" -> {
+                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
+                }
+                price != null -> {
+                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK FROM $TABLE_CPU WHERE $CPU_PRICE <= ? "
+                }
+                else -> {
+                    // No valid parameters provided
+                    return null
+                }
+            }
+
+            // Execute the query with appropriate arguments
+            cursor = db.rawQuery(query, arrayOf(price.toString()))
+
+            cursor.use {
+                if (cursor.moveToFirst()) {
+                    val cores = cursor.getInt(0)
+                    val clock = cursor.getInt(1)
+                    val price = cursor.getInt(2)
+
+                    Triple(cores, clock, price)
                 } else {
                     null
                 }
