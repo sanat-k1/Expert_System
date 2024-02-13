@@ -321,7 +321,6 @@
         android:layout_marginEnd="184dp"
         android:layout_marginBottom="191dp"
         android:text="TextView" />
-    //Ram
 
     <TextView
         android:layout_width="wrap_content"
