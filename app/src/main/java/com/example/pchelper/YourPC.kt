@@ -22,6 +22,13 @@ class YourPC : AppCompatActivity() {
         "2048GB" to 12000,
         "4096GB" to 20000
     )
+    private val ramPriceMap = mapOf(
+        "8GB" to 2000,
+        "16GB" to 4000,
+        "32GB" to 8000,
+        "64GB" to 16000,
+        "128GB" to 32000
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pc)
@@ -60,14 +67,27 @@ class YourPC : AppCompatActivity() {
         btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
             val ssdprice = findViewById<TextView>(R.id.ssdprice)
+            val ramprice = findViewById<TextView>(R.id.ramprice)
             val ssdPrice = ssdPriceMap[ssdCapacity]
             if (ssdPrice != null) {
                 // Store the SSD price in a variable
                 val ssdPriceVariable = ssdPrice
-                ssdprice.text= ssdPrice.toString()
+                ssdprice.text= ssdPriceVariable.toString()
             } else {
                 // Handle the case where the price is not found for the capacity
                 Toast.makeText(this, "Price not found for SSD capacity: $ssdCapacity", Toast.LENGTH_SHORT).show()
+            }
+            // Get the RAM price based on the capacity
+            val ramPrice = ramPriceMap[ramCapacity]
+            if (ramPrice != null) {
+                // Store the RAM price in a variable
+                val ramPriceVariable = ramPrice
+                ramprice.text= ramPriceVariable.toString()
+                // Now you can use ramPriceVariable in other parts of your code
+                // For example, you can pass it to another function or display it in a TextView
+            } else {
+                // Handle the case where the price is not found for the RAM capacity
+                Toast.makeText(this, "Price not found for RAM capacity: $ramCapacity", Toast.LENGTH_SHORT).show()
             }
             val gpuInfo = dbController.get_gpuInfo(budget, gpuType.toString())
 
