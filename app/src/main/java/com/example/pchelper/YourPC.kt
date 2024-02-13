@@ -66,13 +66,16 @@ class YourPC : AppCompatActivity() {
         }
         btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
+            val ssdcap = findViewById<TextView>(R.id.ssdcapacity)
             val ssdprice = findViewById<TextView>(R.id.ssdprice)
+            val ramcap = findViewById<TextView>(R.id.ramcapacity)
             val ramprice = findViewById<TextView>(R.id.ramprice)
             val ssdPrice = ssdPriceMap[ssdCapacity]
             if (ssdPrice != null) {
                 // Store the SSD price in a variable
                 val ssdPriceVariable = ssdPrice
                 ssdprice.text= ssdPriceVariable.toString()
+                ssdcap.text= ssdCapacity
             } else {
                 // Handle the case where the price is not found for the capacity
                 Toast.makeText(this, "Price not found for SSD capacity: $ssdCapacity", Toast.LENGTH_SHORT).show()
@@ -83,8 +86,7 @@ class YourPC : AppCompatActivity() {
                 // Store the RAM price in a variable
                 val ramPriceVariable = ramPrice
                 ramprice.text= ramPriceVariable.toString()
-                // Now you can use ramPriceVariable in other parts of your code
-                // For example, you can pass it to another function or display it in a TextView
+                ramcap.text= ramCapacity
             } else {
                 // Handle the case where the price is not found for the RAM capacity
                 Toast.makeText(this, "Price not found for RAM capacity: $ramCapacity", Toast.LENGTH_SHORT).show()
@@ -113,7 +115,10 @@ class YourPC : AppCompatActivity() {
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = gpuClock.toString()
                 val img = findViewById<ImageView>(R.id.imageView)
-                //the code
+                // Construct the resource identifier dynamically
+                val resourceId = resources.getIdentifier(gpuimg, "drawable", packageName)
+                // Set the image resource using the constructed identifier
+                img.setImageResource(resourceId)
             } else {
                 // Handle case when GPU is not found
                 val vram = findViewById<TextView>(R.id.gpuvram)
