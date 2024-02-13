@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="81dp"
+        android:layout_marginEnd="65dp"
         android:layout_marginBottom="410dp"
         android:text="TextView" />
 
@@ -222,8 +222,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="190dp"
-        android:layout_marginBottom="222dp"
+        android:layout_marginEnd="260dp"
+        android:layout_marginBottom="193dp"
         android:text="Price" />
 
     <TextView
@@ -232,9 +232,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="253dp"
-        android:layout_marginBottom="192dp"
-        android:text="Price: " />
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="221dp"
+        android:text="TextView" />
 
     <TextView
         android:id="@+id/ssdprice"
@@ -242,8 +242,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="175dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginBottom="191dp"
         android:text="TextView" />
 
     <TextView
