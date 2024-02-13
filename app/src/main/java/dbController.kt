@@ -182,29 +182,26 @@ class dbController(context: Context) :
         onCreate(db)
     }
 
-    fun showSsd(capacity: String): Int {
-        var db = writableDatabase
-        var cap = capacity.toInt()
-        var value: Int = 0
-
-        // Execute the query
-        val cursor = db.rawQuery(
-            "SELECT $SSD_PRICE FROM $TABLE_SSD WHERE $SSD_CAPACITY = ?",
-            arrayOf(cap.toString())
-        )
-
-        // Check if the cursor contains any rows
-        if (cursor.moveToFirst()) {
-            // Retrieve the value from the first row
-            value = cursor.getInt(0)
+    fun getSSDPrice(ssdCapacity: Int? = null): String? {
+        return try {
+            val db = readableDatabase
+            val cursor: Cursor?
+            val query = "SELECT $SSD_PRICE FROM $TABLE_SSD WHERE $SSD_CAPACITY = ?"
+            cursor = db.rawQuery(query, arrayOf(ssdCapacity?.toString()))
+            cursor.use {
+                if (cursor.moveToFirst()) {
+                    cursor.getString(0)
+                } else {
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Handle database query error gracefully
+            e.printStackTrace()
+            null
         }
-
-        // Close the cursor and database to release resources
-        cursor.close()
-        db.close()
-
-        return value
     }
+
     fun get_gpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
         return try {
             val db = readableDatabase
@@ -279,78 +276,8 @@ class dbController(context: Context) :
             e.printStackTrace()
             null
         }
-    }
+    }//gpu query
 
-    fun get_cpuInfo(price: Int? = null, type: String? = null): Triple<String, Int, Int>? {
-        return try {
-            val db = readableDatabase
-            val cursor: Cursor?
-
-            // Build the SQL query based on the provided parameters
-            val query = when {
-                price != null && type != "any" -> {
-                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_TIER FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
-                }
-                type == "any" -> {
-                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_TIER FROM $TABLE_CPU WHERE $CPU_PRICE <= ?"
-                }
-                else -> {
-                    // No valid parameters provided
-                    return null
-                }
-            }
-
-            // Execute the query with appropriate arguments
-            cursor = db.rawQuery(query, arrayOf(price.toString()))
-
-            cursor.use {
-                if (cursor.moveToFirst()) {
-                    Triple(cursor.getString(0), cursor.getInt(1), cursor.getInt(2))
-                } else {
-                    null
-                }
-            }
-        } catch (e: Exception) {
-            // Handle database query error gracefully
-            e.printStackTrace()
-            null
-        }
-    }
-    fun get_cpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
-        return try {
-            val db = readableDatabase
-            val cursor: Cursor?
-
-            // Build the SQL query based on the provided parameters
-            val query = when {
-                price != null && type != "any" -> {
-                    "SELECT $CPU_BASE_CLOCK, $CPU_MAX_CLOCK, $CPU_CORES FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
-                }
-                type == "any" -> {
-                    "SELECT $CPU_BASE_CLOCK, $CPU_MAX_CLOCK, $CPU_CORES FROM $TABLE_GPU WHERE $CPU_PRICE <= ?"
-                }
-                else -> {
-                    // No valid parameters provided
-                    return null
-                }
-            }
-
-            // Execute the query with appropriate arguments
-            cursor = db.rawQuery(query, arrayOf(price.toString()))
-
-            cursor.use {
-                if (cursor.moveToFirst()) {
-                    Triple(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2))
-                } else {
-                    null
-                }
-            }
-        } catch (e: Exception) {
-            // Handle database query error gracefully
-            e.printStackTrace()
-            null
-        }
-    }
 
 
 }

@@ -50,21 +50,21 @@ class YourPC : AppCompatActivity() {
     }
         btn= findViewById(R.id.get_info)
         btn.setOnClickListener {
-            val gpuInfo = dbController.get_gpuInfo(budget.toInt(), gpuType.toString())
+            val sPrice = dbController.getSSDPrice(ssdCapacity?.toInt())
+            val ssdprice = findViewById<TextView>(R.id.ssdPrice)
+            ssdprice.text= sPrice
+            val gpuInfo = dbController.get_gpuInfo(budget, gpuType.toString())
 
             if (gpuInfo != null) {
                 val (gpuName, gpuPrice) = gpuInfo
-
                 val name = findViewById<TextView>(R.id.gpuname)
                 name.text = gpuName
-
                 val gpuprice = findViewById<TextView>(R.id.gpuprice)
                 gpuprice.text = gpuPrice
             } else {
                 // Handle case when GPU is not found
                 val tv5 = findViewById<TextView>(R.id.gpuname)
                 tv5.text = "No GPU found."
-
                 val gpuprice = findViewById<TextView>(R.id.gpuprice)
                 gpuprice.text = ""
             }
@@ -72,28 +72,23 @@ class YourPC : AppCompatActivity() {
             val gpuInfo2 = dbController.get_gpuInfo2(budget.toInt(), gpuType.toString())
             if (gpuInfo2 != null) {
                 val (gpuVram, gpuClock, gpuTier) = gpuInfo2
-
                 val vram = findViewById<TextView>(R.id.gpuvram)
                 vram.text = gpuVram.toString()
-
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = gpuClock.toString()
-
                 val tier = findViewById<TextView>(R.id.gputier)
                 tier.text = gpuTier.toString()
             } else {
                 // Handle case when GPU is not found
                 val vram = findViewById<TextView>(R.id.gpuvram)
                 vram.text = "not found"
-
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = "not found"
-
                 val tier = findViewById<TextView>(R.id.gputier)
                 tier.text = "not found"
             }
+
         }
-
-
     }
+
 }
