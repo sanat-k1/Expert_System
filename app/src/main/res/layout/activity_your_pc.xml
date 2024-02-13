@@ -12,8 +12,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="378dp"
-        android:layout_marginBottom="432dp"
-        android:src="" />
+        android:layout_marginBottom="432dp" />
 
     <TextView
         android:id="@+id/cpuname"
@@ -116,8 +115,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="374dp"
-        android:layout_marginBottom="298dp"
-        android:src="" />
+        android:layout_marginBottom="298dp" />
 
     <TextView
         android:id="@+id/usageTextView"
@@ -294,7 +292,6 @@
         android:text="Capacity: " />
 
     <TextView
-        android:id="@+id/ssdcap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -304,6 +301,7 @@
         android:text="TextView" />
 
     <TextView
+        android:id="@+id/ssdcapacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -341,7 +339,6 @@
         android:text="Capacity: " />
 
     <TextView
-        android:id="@+id/ramcap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -351,6 +348,7 @@
         android:text="TextView" />
 
     <TextView
+        android:id="@+id/ramcapacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
