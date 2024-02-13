@@ -227,10 +227,10 @@ class dbController(context: Context) :
             // Build the SQL query based on the provided parameters
             val query = when {
                 price != null && type != "any" -> {
-                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
+                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK, $CPU_PRICE FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
                 }
                 price != null -> {
-                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK FROM $TABLE_CPU WHERE $CPU_PRICE <= ? "
+                    "SELECT $CPU_CORES, $CPU_MAX_CLOCK, $CPU_PRICE  FROM $TABLE_CPU WHERE $CPU_PRICE <= ? "
                 }
                 else -> {
                     // No valid parameters provided
@@ -245,9 +245,9 @@ class dbController(context: Context) :
                 if (cursor.moveToFirst()) {
                     val cores = cursor.getInt(0)
                     val clock = cursor.getInt(1)
-                    val price = cursor.getInt(2)
+                    val Price = cursor.getInt(2)
 
-                    Triple(cores, clock, price)
+                    Triple(cores, clock, Price)
                 } else {
                     null
                 }

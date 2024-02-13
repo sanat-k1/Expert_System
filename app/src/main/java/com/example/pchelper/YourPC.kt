@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dbController
@@ -32,7 +33,7 @@ class YourPC : AppCompatActivity() {
         val gpuTextView = findViewById<TextView>(R.id.gpuTextView)
         val ssdTextView = findViewById<TextView>(R.id.ssdTextView)
         val ramTextView = findViewById<TextView>(R.id.ramTextView)
-        back= findViewById(R.id.floatingActionButton)
+        back = findViewById(R.id.floatingActionButton)
 
 // Display the received data in the TextViews
 
@@ -43,12 +44,12 @@ class YourPC : AppCompatActivity() {
         ssdTextView.text = "SSD Capacity: $ssdCapacity"
         ramTextView.text = "RAM Capacity: $ramCapacity"
 
-    back.setOnClickListener {
-        val intent = Intent(this,home::class.java)
-        intent.putExtra("mode","yopc")
-        startActivity(intent)
-    }
-        btn= findViewById(R.id.get_info)
+        back.setOnClickListener {
+            val intent = Intent(this, home::class.java)
+            intent.putExtra("mode", "yopc")
+            startActivity(intent)
+        }
+        btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
 
             val gpuInfo = dbController.get_gpuInfo(budget, gpuType.toString())
@@ -84,7 +85,38 @@ class YourPC : AppCompatActivity() {
 
             }
 
+            val cpuinfo = dbController.get_cpuInfo(budget.toInt(), cpuType.toString())
+            if (cpuinfo != null) {
+                val (cpuname, cpuprice, cpuimg) = cpuinfo
+                val name = findViewById<TextView>(R.id.cpuname)
+                name.text = cpuname.toString()
+                val price = findViewById<TextView>(R.id.cpuprice)
+                price.text = cpuprice.toString()
+                val img = findViewById<ImageView>(R.id.cpuimg)
+            } else {
+                val name = findViewById<TextView>(R.id.cpuname)
+                name.text = "not found"
+                val price = findViewById<TextView>(R.id.cpuprice)
+                price.text = "not found"
+
+            }
+
+
         }
+        val cpuInfo2 = dbController.get_cpuInfo2(budget.toInt(), cpuType.toString())
+        if (cpuInfo2 != null) {
+           val (cpucore, cpuclock, cpuprice) = cpuInfo2
+            val core = findViewById<TextView>(R.id.cpucore)
+            core.text = cpucore.toString()
+            val clock = findViewById<TextView>(R.id.cpuclock)
+            clock.text = cpuclock.toString() }
+        else {
+          // Handle case when GPU is not found
+           val core = findViewById<TextView>(R.id.cpucore)
+           core.text = "not found"
+            val clock = findViewById<TextView>(R.id.cpuclock)
+              clock.text = "not found"
     }
+        }
 
 }
