@@ -281,6 +281,78 @@ class dbController(context: Context) :
         }
     }
 
+    fun get_cpuInfo(price: Int? = null, type: String? = null): Triple<String, Int, Int>? {
+        return try {
+            val db = readableDatabase
+            val cursor: Cursor?
+
+            // Build the SQL query based on the provided parameters
+            val query = when {
+                price != null && type != "any" -> {
+                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_TIER FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
+                }
+                type == "any" -> {
+                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_TIER FROM $TABLE_CPU WHERE $CPU_PRICE <= ?"
+                }
+                else -> {
+                    // No valid parameters provided
+                    return null
+                }
+            }
+
+            // Execute the query with appropriate arguments
+            cursor = db.rawQuery(query, arrayOf(price.toString()))
+
+            cursor.use {
+                if (cursor.moveToFirst()) {
+                    Triple(cursor.getString(0), cursor.getInt(1), cursor.getInt(2))
+                } else {
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Handle database query error gracefully
+            e.printStackTrace()
+            null
+        }
+    }
+    fun get_cpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, Int>? {
+        return try {
+            val db = readableDatabase
+            val cursor: Cursor?
+
+            // Build the SQL query based on the provided parameters
+            val query = when {
+                price != null && type != "any" -> {
+                    "SELECT $CPU_BASE_CLOCK, $CPU_MAX_CLOCK, $CPU_CORES FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
+                }
+                type == "any" -> {
+                    "SELECT $CPU_BASE_CLOCK, $CPU_MAX_CLOCK, $CPU_CORES FROM $TABLE_GPU WHERE $CPU_PRICE <= ?"
+                }
+                else -> {
+                    // No valid parameters provided
+                    return null
+                }
+            }
+
+            // Execute the query with appropriate arguments
+            cursor = db.rawQuery(query, arrayOf(price.toString()))
+
+            cursor.use {
+                if (cursor.moveToFirst()) {
+                    Triple(cursor.getInt(0), cursor.getInt(1), cursor.getInt(2))
+                } else {
+                    null
+                }
+            }
+        } catch (e: Exception) {
+            // Handle database query error gracefully
+            e.printStackTrace()
+            null
+        }
+    }
+
+
 
 
 }
