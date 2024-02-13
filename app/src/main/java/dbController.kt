@@ -182,7 +182,7 @@ class dbController(context: Context) :
         onCreate(db)
     }
 
-    fun get_cpuInfo(price: Int? = null, type: String? = null): Pair<String, String>? {
+    fun get_cpuInfo(price: Int? = null, type: String? = null): Triple<String, String, String>? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
@@ -190,10 +190,10 @@ class dbController(context: Context) :
             // Build the SQL query based on the provided parameters
             val query = when {
                 price != null && type != "any" -> {
-                    "SELECT $CPU_NAME, $CPU_PRICE FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
+                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_IMG FROM $TABLE_CPU WHERE $CPU_PRICE <= ? AND $CPU_NAME LIKE '%$type%'"
                 }
                 type == "any" -> {
-                    "SELECT $CPU_NAME, $CPU_PRICE FROM $TABLE_CPU WHERE $CPU_PRICE <= ? "
+                    "SELECT $CPU_NAME, $CPU_PRICE, $CPU_IMG FROM $TABLE_CPU WHERE $CPU_PRICE <= ? "
                 }
                 else -> {
                     // No valid parameters provided
@@ -206,7 +206,7 @@ class dbController(context: Context) :
 
             cursor.use {
                 if (cursor.moveToFirst()) {
-                    Pair(cursor.getString(0), cursor.getString(1))
+                    Triple(cursor.getString(0), cursor.getString(1), cursor.getString(2))
                 } else {
                     null
                 }
