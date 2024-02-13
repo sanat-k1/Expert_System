@@ -203,11 +203,13 @@ class dbController(context: Context) :
         }
     }
 
-    fun get_gpuInfo2(price: Int? = null, type: String? = null): Triple<Int, Int, String>? {
+    fun get_gpuInfo2(price: Int, type: String? = null): Triple<Int, Int, String>? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
-
+            if (price==0){
+                return null
+            }
             // Build the SQL query based on the provided parameters
             val query = when {
                 price != null && type != "any" -> {
@@ -243,11 +245,13 @@ class dbController(context: Context) :
         }
     }
 
-    fun get_gpuInfo(price: Int? = null, type: String? = null): Pair<String, String>? {
+    fun get_gpuInfo(price: Int, type: String? = null): Pair<String, String>? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
-
+                if (price==0){
+                    return null
+                }
             // Build the SQL query based on the provided parameters
             val query = when {
                 price != null && type != "any" -> {
