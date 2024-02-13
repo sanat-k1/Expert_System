@@ -73,7 +73,7 @@ class dbController(context: Context) :
         const val CREATE_TABLE_SSD = "CREATE TABLE $TABLE_SSD (" +
                 "$SSD_ID INTEGER PRIMARY KEY," +
                 "$SSD_PRICE INTEGER," +
-                "$SSD_CAPACITY INTEGER" +
+                "$SSD_CAPACITY TEXT" +
                 ")"
 
         // SQL statement for creating RAM table
@@ -149,11 +149,11 @@ class dbController(context: Context) :
         // Insert data into SSD table
         db.execSQL(
             "INSERT INTO $TABLE_SSD ($SSD_ID, $SSD_PRICE, $SSD_CAPACITY) VALUES " +
-                    "(1, 1500, 256), " +
-                    "(2, 3000, 512), " +
-                    "(3, 6000, 1024), " +
-                    "(4, 10000, 2048), " +
-                    "(5, 20000, 4096)"
+                    "(1, 1500, '256'), " +
+                    "(2, 3000, '512'), " +
+                    "(3, 6000, '1024'), " +
+                    "(4, 10000, '2048'), " +
+                    "(5, 20000, '4096')"
         )
 
         // Insert data into RAM table
@@ -182,12 +182,12 @@ class dbController(context: Context) :
         onCreate(db)
     }
 
-    fun getSSDPrice(ssdCapacity: Int? = null): String? {
+    fun getSSDPrice(ssdCapacity: String? = null): String? {
         return try {
             val db = readableDatabase
             val cursor: Cursor?
-            val query = "SELECT $SSD_PRICE FROM $TABLE_SSD WHERE $SSD_CAPACITY = ?"
-            cursor = db.rawQuery(query, arrayOf(ssdCapacity?.toString()))
+            val query = "SELECT $SSD_PRICE FROM $TABLE_SSD WHERE $SSD_CAPACITY LIKE '%$ssdCapacity%'"
+            cursor = db.rawQuery(query,null)
             cursor.use {
                 if (cursor.moveToFirst()) {
                     cursor.getString(0)

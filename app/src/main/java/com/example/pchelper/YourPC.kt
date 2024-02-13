@@ -50,10 +50,9 @@ class YourPC : AppCompatActivity() {
     }
         btn= findViewById(R.id.get_info)
         btn.setOnClickListener {
-            val intCap = ssdCapacity?.toInt()
-            val sPrice = dbController.getSSDPrice(intCap)
+            val sPrice = dbController.getSSDPrice(ssdCapacity)
             val ssdprice = findViewById<TextView>(R.id.ssdPrice)
-            ssdprice.text= intCap.toString()
+            ssdprice.text= sPrice
             val gpuInfo = dbController.get_gpuInfo(budget, gpuType.toString())
 
             if (gpuInfo != null) {
