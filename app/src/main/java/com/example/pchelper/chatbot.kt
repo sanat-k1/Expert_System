@@ -87,16 +87,7 @@ class chatbot : Fragment() {
             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
             .into(jif)
 
-//        making a gay button
-        val colors = intArrayOf(
-            ContextCompat.getColor(requireContext(), R.color.red),
-            ContextCompat.getColor(requireContext(), R.color.green),
-            ContextCompat.getColor(requireContext(), R.color.blue),
-            ContextCompat.getColor(requireContext(), R.color.Cyan),
-            ContextCompat.getColor(requireContext(), R.color.Magenta),
-            ContextCompat.getColor(requireContext(), R.color.yellow)
-        )
-        answer= "i dont know boss"
+        answer= "i don't know boss"
         submit.setOnClickListener {
             question=qbar.text.toString()
             val userInput = qbar.text.toString().trim()

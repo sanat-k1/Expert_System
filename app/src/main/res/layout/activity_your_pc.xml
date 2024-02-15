@@ -8,21 +8,21 @@
 
     <ImageView
         android:id="@+id/cpuimg"
-        android:layout_width="133dp"
-        android:layout_height="88dp"
+        android:layout_width="182dp"
+        android:layout_height="120dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="175dp"
-        android:layout_marginBottom="506dp" />
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="526dp" />
 
     <TextView
         android:id="@+id/cpuname"
-        android:layout_width="115dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="534dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="627dp"
         android:text="TextView" />
 
     <TextView
@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="206dp"
-        android:layout_marginBottom="478dp"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="500dp"
         android:text="TextView" />
 
     <TextView
@@ -41,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="480dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="583dp"
         android:text="TextView" />
 
     <TextView
@@ -51,8 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="504dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="500dp"
         android:text="TextView" />
 
     <TextView
@@ -60,36 +60,40 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="482dp"
-        android:text="Cores" />
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="583dp"
+        android:text="Cores"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="125dp"
-        android:layout_marginBottom="506dp"
-        android:text="Clock" />
+        android:layout_marginEnd="191dp"
+        android:layout_marginBottom="500dp"
+        android:text="Clock"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="272dp"
-        android:layout_marginBottom="479dp"
-        android:text="Price" />
+        android:layout_marginEnd="311dp"
+        android:layout_marginBottom="501dp"
+        android:text="Price"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="321dp"
-        android:layout_marginBottom="571dp"
-        android:text="CPU: " />
+        android:layout_marginEnd="357dp"
+        android:layout_marginBottom="607dp"
+        android:text="CPU: "
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/get_info"
@@ -97,8 +101,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="94dp"
-        android:layout_marginBottom="660dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="669dp"
         android:text="Build PC" />
 
     <TextView
@@ -106,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Usage:"
+        android:textStyle="bold"
         android:textSize="18sp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"/>
@@ -125,12 +130,12 @@
 
     <TextView
         android:id="@+id/gpuname"
-        android:layout_width="79dp"
-        android:layout_height="57dp"
+        android:layout_width="134dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="224dp"
-        android:layout_marginBottom="368dp"
+        android:layout_marginEnd="213dp"
+        android:layout_marginBottom="394dp"
         android:text="TextView" />
 
     <TextView
@@ -139,8 +144,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="405dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="424dp"
         android:text="TextView" />
 
     <TextView
@@ -149,8 +154,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="379dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="390dp"
         android:text="TextView" />
 
     <TextView
@@ -159,8 +164,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="351dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="359dp"
         android:text="TextView" />
 
     <TextView
@@ -168,36 +173,40 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="379dp"
-        android:text="Vram" />
+        android:layout_marginEnd="167dp"
+        android:layout_marginBottom="393dp"
+        android:text="Vram"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="351dp"
-        android:text="Clock" />
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="362dp"
+        android:text="Clock"
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="182dp"
-        android:layout_marginBottom="406dp"
-        android:text="Price" />
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="422dp"
+        android:text="Price"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="47dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="319dp"
-        android:layout_marginBottom="401dp"
-        android:text="GPU: " />
+        android:layout_marginEnd="356dp"
+        android:layout_marginBottom="408dp"
+        android:text="GPU: "
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -206,7 +215,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="320dp"
         android:layout_marginBottom="299dp"
-        android:text="SSD: " />
+        android:text="SSD: "
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -214,8 +224,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="239dp"
-        android:layout_marginBottom="278dp"
-        android:text="Capacity: " />
+        android:layout_marginBottom="298dp"
+        android:text="Capacity: "
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -223,8 +234,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="267dp"
-        android:layout_marginBottom="237dp"
-        android:text="Price" />
+        android:layout_marginBottom="264dp"
+        android:text="Price"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/ssdcapacity"
@@ -232,8 +244,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="278dp"
+        android:layout_marginEnd="167dp"
+        android:layout_marginBottom="299dp"
         android:text="TextView" />
 
     <TextView
@@ -242,8 +254,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="171dp"
-        android:layout_marginBottom="234dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="269dp"
         android:text="TextView" />
 
     <TextView
@@ -253,7 +265,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="320dp"
         android:layout_marginBottom="199dp"
-        android:text="Ram: " />
+        android:text="Ram: "
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -261,17 +274,19 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="236dp"
-        android:layout_marginBottom="172dp"
-        android:text="Capacity: " />
+        android:layout_marginBottom="200dp"
+        android:text="Capacity: "
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="183dp"
-        android:layout_marginBottom="175dp"
-        android:text="Price" />
+        android:layout_marginEnd="262dp"
+        android:layout_marginBottom="165dp"
+        android:text="Price"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/ramcapacity"
@@ -279,9 +294,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="256dp"
-        android:layout_marginBottom="140dp"
-        android:text="Price: " />
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="196dp"
+        android:text="TextView" />
 
     <TextView
         android:id="@+id/ramprice"
@@ -289,8 +304,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="166dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="167dp"
         android:text="TextView" />
 
     <TextView
@@ -299,8 +314,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="274dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginEnd="123dp"
+        android:layout_marginBottom="82dp"
         android:text="TextView"
         android:textSize="20dp"
         android:textStyle="bold" />

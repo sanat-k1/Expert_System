@@ -32,6 +32,7 @@ class dbController(context: Context) :
         const val GPU_TIER = "Tier"
         const val GPU_IMG = "Image"
 
+
         // SQL statement for creating CPU table
         const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
                 "$CPU_ID INTEGER PRIMARY KEY," +
@@ -249,7 +250,7 @@ class dbController(context: Context) :
         return try {
             val db = readableDatabase
             val cursor: Cursor?
-                if (price==0){
+            if (price==0){
                     return null
                 }
             // Build the SQL query based on the provided parameters

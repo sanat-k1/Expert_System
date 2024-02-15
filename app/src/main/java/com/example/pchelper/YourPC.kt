@@ -37,8 +37,8 @@ class YourPC : AppCompatActivity() {
         // Extracting data from the intent
         val usage = intent.getStringExtra("usage")
         val budget = intent.getIntExtra("budget", 0)
-        val cpuType = intent.getStringExtra("cpuType")
-        val gpuType = intent.getStringExtra("gpuType")
+        val cpuType = intent.getStringExtra("cpuType")?: "any"
+        val gpuType = intent.getStringExtra("gpuType")?: "any"
         val ssdCapacity = intent.getStringExtra("ssdCapacity")
         val ramCapacity = intent.getStringExtra("ramCapacity")
         // Assuming you have TextViews in your layout to display the PC configuration details
@@ -62,6 +62,8 @@ class YourPC : AppCompatActivity() {
             val ramprice = findViewById<TextView>(R.id.ramprice)
             val ssdPrice = ssdPriceMap[ssdCapacity]
             var budg = 0
+            var cpuPrice = 0
+            var gpuPrice = 0
             if (ssdPrice != null) {
                 // Store the SSD price in a variable
                 val ssdPriceVariable = ssdPrice
@@ -99,18 +101,19 @@ class YourPC : AppCompatActivity() {
                 gprice = budg-cprice
             }
             else{
-                cprice = (budg * 0.6).toInt()
+                cprice = (budg * 0.4).toInt()
                 gprice = budg-cprice
             }
 
             val gpuInfo = dbController.get_gpuInfo(gprice, gpuType.toString())
 
             if (gpuInfo != null) {
-                val (gpuName, gpuPrice) = gpuInfo
+                val (gpuName, gpuprice) = gpuInfo
+                gpuPrice = gpuprice.toInt()
                 val name = findViewById<TextView>(R.id.gpuname)
                 name.text = gpuName
-                val gpuprice = findViewById<TextView>(R.id.gpuprice)
-                gpuprice.text = "Rs." +gpuPrice
+                val gpupricetv = findViewById<TextView>(R.id.gpuprice)
+                gpupricetv.text = "Rs." +gpuprice
             } else {
                 // Handle case when GPU is not found
                 val tv5 = findViewById<TextView>(R.id.gpuname)
@@ -142,6 +145,7 @@ class YourPC : AppCompatActivity() {
             val cpuinfo = dbController.get_cpuInfo(cprice.toInt(), cpuType.toString())
             if (cpuinfo != null) {
                 val (cpuname, cpuprice, cpuimg) = cpuinfo
+                cpuPrice = cpuprice.toInt()
                 val name = findViewById<TextView>(R.id.cpuname)
                 name.text = cpuname.toString()
                 val price = findViewById<TextView>(R.id.cpuprice)
@@ -156,7 +160,6 @@ class YourPC : AppCompatActivity() {
                 name.text = "not found"
                 val price = findViewById<TextView>(R.id.cpuprice)
                 price.text = "not found"
-
             }
 
             val cpuInfo2 = dbController.get_cpuInfo2(cprice.toInt(), cpuType.toString())
@@ -172,9 +175,11 @@ class YourPC : AppCompatActivity() {
                 core.text = "not found"
                 val clock = findViewById<TextView>(R.id.cpuclock)
                 clock.text = "not found"
+            }
+            val totalPrice = ssdPrice!! + ramPrice!! + cpuPrice + gpuPrice
+            val totalPricetv = findViewById<TextView>(R.id.totalprice)
+            totalPricetv.text = "Total cost: Rs "+totalPrice.toString()+"/-"
         }
-
     }
-        }
 
 }
