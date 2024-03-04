@@ -3,6 +3,7 @@ package com.example.pchelper
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -60,16 +61,25 @@ class YourPC : AppCompatActivity() {
             val ssdprice = findViewById<TextView>(R.id.ssdprice)
             val ramcap = findViewById<TextView>(R.id.ramcapacity)
             val ramprice = findViewById<TextView>(R.id.ramprice)
+            val cpu = findViewById<TextView>(R.id.textView5)
+            val gpu = findViewById<TextView>(R.id.textView6)
+            val ssd = findViewById<TextView>(R.id.textView7)
+            val ram = findViewById<TextView>(R.id.textView8)
+            cpu.setVisibility(View.VISIBLE)
+            gpu.setVisibility(View.VISIBLE)
+            ssd.setVisibility(View.VISIBLE)
+            ram.setVisibility(View.VISIBLE)
             val ssdPrice = ssdPriceMap[ssdCapacity]
             var budg = 0
             var cpuPrice = 0
             var gpuPrice = 0
+
             if (ssdPrice != null) {
                 // Store the SSD price in a variable
                 val ssdPriceVariable = ssdPrice
                 budg=budget-ssdPrice
-                ssdprice.text= ssdPriceVariable.toString()
-                ssdcap.text= ssdCapacity
+                ssdprice.text= "Price: Rs."+ssdPriceVariable.toString()
+                ssdcap.text= "Capacity: "+ssdCapacity
             } else {
                 // Handle the case where the price is not found for the capacity
                 Toast.makeText(this, "Price not found for SSD capacity: $ssdCapacity", Toast.LENGTH_SHORT).show()
@@ -80,8 +90,8 @@ class YourPC : AppCompatActivity() {
                 // Store the RAM price in a variable
                 val ramPriceVariable = ramPrice
                 budg-=ramPrice
-                ramprice.text= ramPriceVariable.toString()
-                ramcap.text= ramCapacity
+                ramprice.text= "Price: Rs."+ramPriceVariable.toString()
+                ramcap.text= "Capacity: "+ramCapacity
             } else {
                 // Handle the case where the price is not found for the RAM capacity
                 Toast.makeText(this, "Price not found for RAM capacity: $ramCapacity", Toast.LENGTH_SHORT).show()
@@ -113,7 +123,7 @@ class YourPC : AppCompatActivity() {
                 val name = findViewById<TextView>(R.id.gpuname)
                 name.text = gpuName
                 val gpupricetv = findViewById<TextView>(R.id.gpuprice)
-                gpupricetv.text = "Rs." +gpuprice
+                gpupricetv.text = "Price : Rs." +gpuprice
             } else {
                 // Handle case when GPU is not found
                 val tv5 = findViewById<TextView>(R.id.gpuname)
@@ -126,9 +136,9 @@ class YourPC : AppCompatActivity() {
             if (gpuInfo2 != null) {
                 val (gpuVram, gpuClock, gpuimg) = gpuInfo2
                 val vram = findViewById<TextView>(R.id.gpuvram)
-                vram.text = gpuVram.toString()+"GB"
+                vram.text = "Vram : "+gpuVram.toString()+"GB"
                 val clock = findViewById<TextView>(R.id.gpuclock)
-                clock.text = gpuClock.toString()+" GHz"
+                clock.text = "Clock : "+gpuClock.toString()+"GHz"
                 val img = findViewById<ImageView>(R.id.imageView)
                 // Construct the resource identifier dynamically
 //                val resourceId = resources.getIdentifier(gpuimg, "drawable", packageName)
@@ -149,7 +159,7 @@ class YourPC : AppCompatActivity() {
                 val name = findViewById<TextView>(R.id.cpuname)
                 name.text = cpuname.toString()
                 val price = findViewById<TextView>(R.id.cpuprice)
-                price.text = "Rs." +cpuprice.toString()
+                price.text = "Price : Rs." +cpuprice.toString()
                 val img = findViewById<ImageView>(R.id.cpuimg)
                 // Construct the resource identifier dynamically
                 val resourceId = resources.getIdentifier(cpuimg, "drawable", packageName)
@@ -166,9 +176,9 @@ class YourPC : AppCompatActivity() {
             if (cpuInfo2 != null) {
                 val (cpucore, cpuclock, cpuprice) = cpuInfo2
                 val core = findViewById<TextView>(R.id.cpucore)
-                core.text = cpucore.toString()
+                core.text = "Cores: "+cpucore.toString()
                 val clock = findViewById<TextView>(R.id.cpuclock)
-                clock.text = cpuclock.toString()+" GHz" }
+                clock.text = "Clock : "+cpuclock.toString()+"GHz" }
             else {
                 // Handle case when GPU is not found
                 val core = findViewById<TextView>(R.id.cpucore)
