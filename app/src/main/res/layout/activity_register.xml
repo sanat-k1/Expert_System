@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".register"
     >
 
@@ -12,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="@drawable/headerbg">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         android:text="Register"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="#673AB7"
+        android:textColor="#3F51B5"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="35dp"/>
 
@@ -125,14 +125,14 @@
         android:background="@drawable/forget"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword"/>
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:id="@+id/reg_submit"
         android:text="Register"
+        android:textSize="18dp"
         android:textColor="#fff"
         android:layout_gravity="center"
         android:background="@drawable/button"
@@ -144,7 +144,7 @@
         android:layout_height="wrap_content"
         android:text="Do you have an account? Sign In"
         android:textSize="18dp"
-        android:textColor="#ad168b"
+        android:textColor="#3F51B5"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"/>

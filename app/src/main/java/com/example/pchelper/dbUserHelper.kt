@@ -26,11 +26,12 @@ class dbUserHelper(context: Context):SQLiteOpenHelper(context, "userdata", null,
         cv.put("mobile", mobile)
 
         val result = p0.insert("userdata",null,cv)
-        if (result==-1.toLong()){
+        if (result== (-1).toLong()){
             return false
         }
         return true
     }
+
 
     fun checkuserpass(email: String, passsword: String):Boolean{
         val p0 = this.writableDatabase
