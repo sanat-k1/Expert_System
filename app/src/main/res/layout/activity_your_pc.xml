@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/cpu_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -58,7 +58,7 @@
         android:layout_height="139dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="29dp"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/cpu_name"
         app:layout_constraintTop_toBottomOf="@+id/get_info" />
     <TextView
         android:id="@+id/cpuname"

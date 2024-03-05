@@ -32,7 +32,6 @@ class dbController(context: Context) :
         const val GPU_TIER = "Tier"
         const val GPU_IMG = "Image"
 
-
         // SQL statement for creating CPU table
         const val CREATE_TABLE_CPU = "CREATE TABLE $TABLE_CPU (" +
                 "$CPU_ID INTEGER PRIMARY KEY," +
@@ -250,17 +249,18 @@ class dbController(context: Context) :
         return try {
             val db = readableDatabase
             val cursor: Cursor?
-            if (price==0){
-                    return null
-                }
+            if (price == 0) {
+                return Pair("NA", "NA")
+            }
             // Build the SQL query based on the provided parameters
             val query = when {
-                price != null && type != "any" -> {
+                type != "any" -> {
                     "SELECT $GPU_NAME, $GPU_PRICE FROM $TABLE_GPU WHERE $GPU_PRICE <= ? AND $GPU_NAME LIKE '%$type%'"
                 }
                 type == "any" -> {
                     "SELECT $GPU_NAME, $GPU_PRICE FROM $TABLE_GPU WHERE $GPU_PRICE <= ?"
                 }
+
                 else -> {
                     // No valid parameters provided
                     return null

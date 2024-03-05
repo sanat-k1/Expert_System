@@ -1,5 +1,6 @@
 package com.example.pchelper
 
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -17,8 +18,6 @@ class login : AppCompatActivity() {
     lateinit var login_tv: TextView
     private lateinit var db: dbUserHelper
     lateinit var btn: Button
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,13 +49,29 @@ class login : AppCompatActivity() {
                 val checkuser = db.checkuserpass(mail,pword)
                 if (checkuser){
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                    //add preferences
-
+                    // Add preferences
                     edit.putString("email", email.text.toString())
                     edit.putString("password", pass.text.toString())
                     edit.apply()
-                    var intent = Intent(this, MainActivity::class.java)
+
+                    // Create an intent to start MainActivity
+                    val mainIntent = Intent(this, MainActivity::class.java)
+
+                    // Create an intent to start HomeActivity
+                    val homeIntent = Intent(this, home::class.java)
+
+                    // Create a task stack containing both activities
+                    val stackBuilder = TaskStackBuilder.create(this)
+                        .addNextIntent(mainIntent)
+                        .addNextIntent(homeIntent)
+
+                    // Start the task stack
+                    stackBuilder.startActivities()
+
+                    // Finish the current activity
+                    finish()
                 }
+
                 else{
                     Toast.makeText(this, "Wrong Credentials", Toast.LENGTH_SHORT).show()
                 }
