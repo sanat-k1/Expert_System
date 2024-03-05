@@ -1,5 +1,6 @@
 package com.example.pchelper
 
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,9 +19,6 @@ class login : AppCompatActivity() {
     private lateinit var db: dbUserHelper
     lateinit var btn: Button
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,6 +30,28 @@ class login : AppCompatActivity() {
         db= dbUserHelper(this)
         val sharedpref = getSharedPreferences("mypref", Context.MODE_PRIVATE)
         var edit = sharedpref.edit()
+
+        val sharedPref = getSharedPreferences("mypref", Context.MODE_PRIVATE)
+        val userEmail = sharedPref.getString("email", null)
+
+        if (userEmail != null) {
+            // Create an intent to start MainActivity
+            val mainIntent = Intent(this, MainActivity::class.java)
+
+            // Create an intent to start HomeActivity
+            val homeIntent = Intent(this, home::class.java)
+
+            // Create a task stack containing both activities
+            val stackBuilder = TaskStackBuilder.create(this)
+                .addNextIntent(mainIntent)
+                .addNextIntent(homeIntent)
+
+            // Start the task stack
+            stackBuilder.startActivities()
+
+            // Finish the current activity
+            finish()
+        }
 
         login_tv.setOnClickListener{
             var intent = Intent(this, register::class.java)
@@ -55,7 +75,22 @@ class login : AppCompatActivity() {
                     edit.putString("email", email.text.toString())
                     edit.putString("password", pass.text.toString())
                     edit.apply()
-                    var intent = Intent(this, MainActivity::class.java)
+                    // Create an intent to start MainActivity
+                    val mainIntent = Intent(this, MainActivity::class.java)
+
+                    // Create an intent to start HomeActivity
+                    val homeIntent = Intent(this, home::class.java)
+
+                    // Create a task stack containing both activities
+                    val stackBuilder = TaskStackBuilder.create(this)
+                        .addNextIntent(mainIntent)
+                        .addNextIntent(homeIntent)
+
+                    // Start the task stack
+                    stackBuilder.startActivities()
+
+                    // Finish the current activity
+                    finish()
                 }
                 else{
                     Toast.makeText(this, "Wrong Credentials", Toast.LENGTH_SHORT).show()
