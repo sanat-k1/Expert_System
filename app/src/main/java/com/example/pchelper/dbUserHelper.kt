@@ -32,6 +32,7 @@ class dbUserHelper(context: Context):SQLiteOpenHelper(context, "userdata", null,
         return true
     }
 
+
     fun checkuserpass(email: String, passsword: String):Boolean{
         val p0 = this.writableDatabase
         val query = "select * from userdata where email ='$email' and password = '$passsword'"
