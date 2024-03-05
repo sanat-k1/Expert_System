@@ -144,7 +144,7 @@
         android:layout_height="wrap_content"
         android:text="Do you have an account? Sign In"
         android:textSize="18dp"
-        android:textColor="#ad168b"
+        android:textColor="#3F51B5"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"/>
