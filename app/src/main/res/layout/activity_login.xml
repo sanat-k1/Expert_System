@@ -7,45 +7,15 @@
     android:orientation="vertical"
     tools:context=".login">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="@drawable/headerbg">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome Back"
-            android:textSize="40dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:layout_marginTop="50dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/login_report"
-            android:text="Sign in to continue"
-            android:textSize="18dp"
-            android:letterSpacing="0.03"
-            android:textColor="#FBC02D"
-            android:textStyle="bold"/>
-
-
-
-    </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:textColor="#ad168b"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="35dp"/>
+        android:text="Login"
+        android:textColor="#673AB7"
+        android:textSize="35dp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_email"
-        android:hint="Enter the Email"
+        android:hint=" Email"
+        android:drawableLeft="@drawable/baseline_email_24"
         android:background="@drawable/forget"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -77,15 +48,17 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"/>
 
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_password"
-        android:hint="Enter the Password"
+        android:hint=" Password"
         android:background="@drawable/forget"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"/>
 
     <TextView
         android:layout_width="wrap_content"
