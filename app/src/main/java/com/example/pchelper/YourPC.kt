@@ -139,11 +139,11 @@ class YourPC : AppCompatActivity() {
                 vram.text = "Vram : "+gpuVram.toString()+"GB"
                 val clock = findViewById<TextView>(R.id.gpuclock)
                 clock.text = "Clock : "+gpuClock.toString()+"GHz"
-                val img = findViewById<ImageView>(R.id.imageView)
-                // Construct the resource identifier dynamically
-//                val resourceId = resources.getIdentifier(gpuimg, "drawable", packageName)
-//                // Set the image resource using the constructed identifier
-//                img.setImageResource(resourceId)
+                val img = findViewById<ImageView>(R.id.gpuimg)
+//                 Construct the resource identifier dynamically
+                val resourceId = resources.getIdentifier(gpuimg, "drawable", packageName)
+                // Set the image resource using the constructed identifier
+                img.setImageResource(resourceId)
             } else {
                 // Handle case when GPU is not found
                 val vram = findViewById<TextView>(R.id.gpuvram)
