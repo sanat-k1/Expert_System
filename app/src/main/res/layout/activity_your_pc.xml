@@ -29,51 +29,53 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/get_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="100dp"
         android:text="Build"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="93dp"
         android:text="CPU: "
-        android:visibility="invisible"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/cpuimg"
-        android:layout_width="256dp"
-        android:layout_height="139dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="240dp"
+        android:layout_height="140dp"
         android:layout_marginTop="29dp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/get_info" />
+
     <TextView
         android:id="@+id/cpuname"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cpuimg"/>
+        app:layout_constraintTop_toBottomOf="@+id/cpuimg" />
 
     <TextView
         android:id="@+id/cpucore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toEndOf="@+id/cpuimg"
         app:layout_constraintTop_toBottomOf="@+id/get_info" />
@@ -82,7 +84,7 @@
         android:id="@+id/cpuclock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/cpuimg"
         app:layout_constraintTop_toBottomOf="@+id/cpucore" />
@@ -91,7 +93,7 @@
         android:id="@+id/cpuprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/cpuimg"
         app:layout_constraintTop_toBottomOf="@+id/cpuclock" />
@@ -101,19 +103,18 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="GPU: "
-        android:visibility="invisible"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpuname" />
 
     <ImageView
         android:id="@+id/gpuimg"
-        android:layout_width="256dp"
-        android:layout_height="139dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="239dp"
+        android:layout_height="140dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/cpuname" />
@@ -122,7 +123,7 @@
         android:id="@+id/gpuname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gpuimg" />
@@ -131,7 +132,7 @@
         android:id="@+id/gpuprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="56dp"
         app:layout_constraintStart_toEndOf="@+id/gpuimg"
         app:layout_constraintTop_toBottomOf="@+id/cpuname" />
@@ -140,7 +141,7 @@
         android:id="@+id/gpuvram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/gpuimg"
         app:layout_constraintTop_toBottomOf="@+id/gpuprice" />
@@ -149,7 +150,7 @@
         android:id="@+id/gpuclock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/gpuimg"
         app:layout_constraintTop_toBottomOf="@+id/gpuvram" />
@@ -160,18 +161,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         android:text="SSD: "
-        android:visibility="invisible"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gpuname" />
+
     <TextView
         android:id="@+id/ssdcapacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/gpuname" />
 
@@ -180,7 +182,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintStart_toEndOf="@+id/ssdcapacity"
         app:layout_constraintTop_toBottomOf="@+id/gpuname" />
 
@@ -219,7 +221,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="69dp"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
