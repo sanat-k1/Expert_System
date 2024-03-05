@@ -24,6 +24,7 @@ class login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
         email= findViewById(R.id.login_email)
         pass = findViewById(R.id.login_password)
         login_tv =findViewById(R.id.login_tv)
@@ -31,6 +32,28 @@ class login : AppCompatActivity() {
         db= dbUserHelper(this)
         val sharedpref = getSharedPreferences("mypref", Context.MODE_PRIVATE)
         var edit = sharedpref.edit()
+
+        val sharedPref = getSharedPreferences("mypref", Context.MODE_PRIVATE)
+        val userEmail = sharedPref.getString("email", null)
+
+        if (userEmail != null) {
+            // Create an intent to start MainActivity
+            val mainIntent = Intent(this, MainActivity::class.java)
+
+            // Create an intent to start HomeActivity
+            val homeIntent = Intent(this, home::class.java)
+
+            // Create a task stack containing both activities
+            val stackBuilder = TaskStackBuilder.create(this)
+                .addNextIntent(mainIntent)
+                .addNextIntent(homeIntent)
+
+            // Start the task stack
+            stackBuilder.startActivities()
+
+            // Finish the current activity
+            finish()
+        }
 
         login_tv.setOnClickListener{
             var intent = Intent(this, register::class.java)
