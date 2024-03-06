@@ -1,5 +1,6 @@
 package com.example.pchelper
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -7,7 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -29,6 +30,16 @@ class about : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        // Set OnClickListener for the logout button
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Set OnClickListener for the logout button
+        view.findViewById<Button>(R.id.logoutButton)?.setOnClickListener {
+            logout()
+        }
     }
     // Function to open email client
     fun composeEmail(email: String) {
@@ -44,5 +55,14 @@ class about : Fragment() {
             // You can prompt the user to install Gmail or use a different email client
         }
     }
+    private fun logout() {
+        val sharedPref = requireActivity().getSharedPreferences("mypref", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.clear()
+        editor.apply()
 
+        val intent = Intent(requireContext(), login::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
 }

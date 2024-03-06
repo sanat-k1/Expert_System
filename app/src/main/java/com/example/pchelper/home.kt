@@ -20,7 +20,7 @@ class home : AppCompatActivity() {
                 R.id.Chatbot -> replaceFragment(chatbot())
                 R.id.vish1 -> replaceFragment(bobthebuilder())
                 R.id.vish2 -> replaceFragment(fag2())
-                R.id.about -> replaceFragment(about())
+                R.id.about ->replaceFragment(about())
                 else ->{
 
                 }

@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class dbUserHelper(context: Context):SQLiteOpenHelper(context, "userdata", null, 1) {
     override fun onCreate(p0: SQLiteDatabase?) {
-        if (p0 != null) {
-            p0.execSQL("create table userdata (username TEXT primary key, password Text, email TEXT, mobile INT )")
-        }
+        p0?.execSQL("create table userdata (username TEXT primary key, password Text, email TEXT, mobile INT )")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -26,15 +24,12 @@ class dbUserHelper(context: Context):SQLiteOpenHelper(context, "userdata", null,
         cv.put("mobile", mobile)
 
         val result = p0.insert("userdata",null,cv)
-        if (result==-1.toLong()){
-            return false
-        }
-        return true
+        return result != (-1).toLong()
     }
 
     fun checkuserpass(email: String, passsword: String):Boolean{
         val p0 = this.writableDatabase
-        val query = "select * from userdata where email ='$email' and password = '$passsword"
+        val query = "select * from userdata where email ='$email' and password = '$passsword'"
         val cursor = p0.rawQuery(query, null)
         if (cursor.count<=0){
             cursor.close()
