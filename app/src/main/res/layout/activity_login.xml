@@ -79,6 +79,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/login_password"
         android:hint="Enter the Password"
+        android:inputType="textPassword"
         android:background="@drawable/forget"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
