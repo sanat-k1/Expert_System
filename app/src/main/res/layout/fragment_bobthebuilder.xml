@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     tools:context=".bobthebuilder">
 
     <ScrollView
@@ -25,6 +26,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Custom PC :"
                 android:textSize="22dp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +38,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="40dp"
                 android:text="Select Usage:"
-                android:textSize="18sp"
+                android:textColor="@color/black"                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -59,6 +61,7 @@
                 android:layout_marginTop="40dp"
                 android:text="Select Budget (in INR):"
                 android:textSize="18sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -81,7 +84,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="40dp"
-                android:text="50,000 INR"
+                android:text="40,000 INR"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/usageSpinner" />
