@@ -97,15 +97,15 @@
         android:layout_marginRight="35dp"/>
 
     <Button
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:text="Login"
-        android:textSize="20dp"
         android:id="@+id/login_submit"
-        android:textColor="#fff"
-        android:background="@drawable/button"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="35dp"/>
+        android:background="@drawable/button"
+        android:text="Login"
+        android:textColor="#fff"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/login_tv"
