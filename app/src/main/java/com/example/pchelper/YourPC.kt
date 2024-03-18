@@ -22,6 +22,8 @@ import dbController
 
 class YourPC : AppCompatActivity() {
 
+    var phone : Boolean = false
+
     private lateinit var mgm : GlyphManager
     private lateinit var callback: GlyphManager.Callback
     private lateinit var dbController: dbController
@@ -79,7 +81,7 @@ class YourPC : AppCompatActivity() {
         var i = progressBar.progress
         btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
-            builder = mgm.glyphFrameBuilder
+
             progressBar.visibility = View.VISIBLE
             Thread(Runnable {
                 while (i<100)
@@ -87,11 +89,16 @@ class YourPC : AppCompatActivity() {
                     i++
                     handler.post(Runnable { progressBar!!.progress = i })
                     Thread.sleep(50)
-                    frame = builder.buildChannelD().build()
-                    mgm.displayProgress(frame,i)
+                    if(phone) {
+                        builder = mgm.glyphFrameBuilder
+                        frame = builder.buildChannelD().build()
+                        mgm.displayProgress(frame, i)
+                    }
                 }
                 runOnUiThread {
-                    mgm.turnOff()
+                    if(phone) {
+                        mgm.turnOff()
+                    }
                     showpc(budget, usage, cpuType, gpuType, ramCapacity, ssdCapacity)
                     progressBar.visibility = View.GONE
                 }
@@ -107,6 +114,7 @@ class YourPC : AppCompatActivity() {
                 if (Common.is23111()) mgm.register(Common.DEVICE_23111)
                 try {
                     mgm.openSession()
+                    phone = true
                 } catch (e: GlyphException) {
                     Log.e("aaa", e.message!!)
                 }
