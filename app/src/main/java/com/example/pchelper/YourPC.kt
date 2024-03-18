@@ -1,9 +1,11 @@
 package com.example.pchelper
 
+import android.content.ComponentName
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -11,10 +13,17 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nothing.ketchum.Common
+import com.nothing.ketchum.GlyphException
+import com.nothing.ketchum.GlyphFrame
+import com.nothing.ketchum.GlyphManager
+import com.nothing.ketchum.GlyphManager.Callback
 import dbController
 
 class YourPC : AppCompatActivity() {
 
+    private lateinit var mgm : GlyphManager
+    private lateinit var callback: GlyphManager.Callback
     private lateinit var dbController: dbController
     lateinit var progressBar: ProgressBar
     lateinit var back: FloatingActionButton
@@ -58,11 +67,19 @@ class YourPC : AppCompatActivity() {
             intent.putExtra("mode", "yopc")
             startActivity(intent)
         }
+        startgly()
+        mgm = GlyphManager.getInstance(this)
+        mgm.init(callback)
+
+        var builder : GlyphFrame.Builder
+        var frame: GlyphFrame
+
         var handler = Handler()
         progressBar = findViewById(R.id.pb)
         var i = progressBar.progress
         btn = findViewById(R.id.get_info)
         btn.setOnClickListener {
+            builder = mgm.glyphFrameBuilder
             progressBar.visibility = View.VISIBLE
             Thread(Runnable {
                 while (i<100)
@@ -70,19 +87,46 @@ class YourPC : AppCompatActivity() {
                     i++
                     handler.post(Runnable { progressBar!!.progress = i })
                     Thread.sleep(50)
+                    frame = builder.buildChannelD().build()
+                    mgm.displayProgress(frame,i)
                 }
                 runOnUiThread {
+                    mgm.turnOff()
                     showpc(budget, usage, cpuType, gpuType, ramCapacity, ssdCapacity)
                     progressBar.visibility = View.GONE
                 }
             }).start()
-//            handler.postDelayed({
-//                progressBar.progress++
-//                // Hide progress bar
-//
-//
-//            },5000)
         }
+    }
+
+    private fun startgly() {
+        callback = object :GlyphManager.Callback{
+            override fun onServiceConnected(p0: ComponentName?) {
+                if (Common.is20111()) mgm.register(Common.DEVICE_20111)
+                if (Common.is22111()) mgm.register(Common.DEVICE_22111)
+                if (Common.is23111()) mgm.register(Common.DEVICE_23111)
+                try {
+                    mgm.openSession()
+                } catch (e: GlyphException) {
+                    Log.e("aaa", e.message!!)
+                }
+                Toast.makeText(applicationContext, "connected?", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onServiceDisconnected(p0: ComponentName?) {
+                mgm.closeSession()
+            }
+        }
+    }
+    override fun onDestroy() {
+        try {
+            mgm.closeSession()
+        }
+        finally {
+            Toast.makeText(applicationContext, "error", Toast.LENGTH_SHORT).show()
+        }
+        mgm.unInit()
+        super.onDestroy()
     }
 
     private fun showpc(budget: Int, usage: String?, cpuType: String, gpuType: String, ramCapacity: String?, ssdCapacity: String?) {

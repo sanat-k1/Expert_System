@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="com.nothing.ketchum.permission.ENABLE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -33,6 +35,9 @@
         <activity android:name=".MainActivity"
             android:exported="true">
         </activity>
+        <meta-data
+            android:name="NothingKey"
+            android:value="test" />
     </application>
     <uses-permission android:name="android.permission.SENDTO" />
 </manifest>
