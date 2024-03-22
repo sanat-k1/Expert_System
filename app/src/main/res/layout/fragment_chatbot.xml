@@ -9,33 +9,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        tools:context=".MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="403dp"
-            android:layout_height="610dp"
+            android:layout_width="398dp"
+            android:layout_height="493dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="124dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.106" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <AutoCompleteTextView
             android:id="@+id/editText"
             android:layout_width="310dp"
             android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:hint="Ask your question"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="61dp"
-            android:layout_height="75dp"
+            android:layout_width="67dp"
+            android:layout_height="88dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/giphy"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Build a Rig"
+            android:text="PC Problem solver"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -61,7 +62,9 @@
             android:layout_marginTop="12dp"
             android:text="Send"
             app:layout_constraintStart_toEndOf="@+id/editText"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+            tools:ignore="TouchTargetSizeCheck" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

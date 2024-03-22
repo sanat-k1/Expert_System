@@ -1,7 +1,9 @@
 package com.example.pchelper
 
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -64,14 +66,19 @@ class YourPC : AppCompatActivity() {
 
         usageTextView.text = "Usage: $usage"
 
+        var nothing = getSharedPreferences("phone",Context.MODE_PRIVATE)
+        var e = nothing.edit()
+
         back.setOnClickListener {
             val intent = Intent(this, home::class.java)
             intent.putExtra("mode", "yopc")
             startActivity(intent)
         }
-        startgly()
+        startgly(e)
+
         mgm = GlyphManager.getInstance(this)
         mgm.init(callback)
+
 
         var builder : GlyphFrame.Builder
         var frame: GlyphFrame
@@ -89,14 +96,14 @@ class YourPC : AppCompatActivity() {
                     i++
                     handler.post(Runnable { progressBar!!.progress = i })
                     Thread.sleep(50)
-                    if(phone) {
+                    if(checkphone(nothing)) {
                         builder = mgm.glyphFrameBuilder
                         frame = builder.buildChannelD().build()
                         mgm.displayProgress(frame, i)
                     }
                 }
                 runOnUiThread {
-                    if(phone) {
+                    if (checkphone(nothing)) {
                         mgm.turnOff()
                     }
                     showpc(budget, usage, cpuType, gpuType, ramCapacity, ssdCapacity)
@@ -106,7 +113,21 @@ class YourPC : AppCompatActivity() {
         }
     }
 
-    private fun startgly() {
+    private fun checkphone(nothing: SharedPreferences?): Boolean {
+
+        var code = nothing!!.getInt("code",1)
+        if (code == 55)
+        {
+            return true
+        }
+        else{
+            return false
+        }
+
+    }
+
+
+    private fun startgly(e : SharedPreferences.Editor) {
         callback = object :GlyphManager.Callback{
             override fun onServiceConnected(p0: ComponentName?) {
                 if (Common.is20111()) mgm.register(Common.DEVICE_20111)
@@ -114,7 +135,8 @@ class YourPC : AppCompatActivity() {
                 if (Common.is23111()) mgm.register(Common.DEVICE_23111)
                 try {
                     mgm.openSession()
-                    phone = true
+                    e.putInt("code",55)
+                    e.commit()
                 } catch (e: GlyphException) {
                     Log.e("aaa", e.message!!)
                 }

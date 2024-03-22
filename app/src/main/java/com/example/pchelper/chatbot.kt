@@ -1,6 +1,6 @@
 package com.example.pchelper
 
-import android.database.Cursor
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +10,18 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.example.pchelper.roomdb.UserViewModel
+import com.example.pchelper.roomdb.user
+import java.lang.reflect.Type
 
 class chatbot : Fragment() {
 
@@ -24,7 +30,7 @@ class chatbot : Fragment() {
     private lateinit var qbar : AutoCompleteTextView
     private lateinit var jif : ImageView
     private lateinit var submit: Button
-    private lateinit var msgs: QAStore
+    private lateinit var muser : UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,6 +43,10 @@ class chatbot : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_chatbot, container, false)
+
+        muser = ViewModelProvider(this).get(UserViewModel::class.java)
+        var room = activity?.getSharedPreferences("firstopen",Context.MODE_PRIVATE)
+        var eddit = room!!.edit()
         var question: String
         var answer : String
 
@@ -46,7 +56,7 @@ class chatbot : Fragment() {
         jif= view.findViewById(R.id.imageView)
 
         datalist = ArrayList()
-        var data = QA("hello","Hello")
+        var data = QA(" ","Hello")
         datalist.add(data)
         val questions = arrayOf(
             "How to speed up my computer?",
@@ -94,36 +104,37 @@ class chatbot : Fragment() {
             if(question.isNotBlank()){
                 answer = getResponse(userInput)
             }
-
-            msgs.savedata(question, answer)
+            inserttodatabase(question,answer)
             data= QA(question,answer)
             datalist.add(data)
-            recyclerView.adapter = QAAdapter(datalist)
+            recyclerView.adapter = QAAdapter()
             qbar.text.clear()
+        }
+        var aaa = recyclerView.adapter
+        var hello = user(1,"Hello","Hi")
+        if(aaa != null && aaa.itemCount == 0) {
+            muser.adduser(hello)
         }
 
 
 //  store and retrieve
-        msgs= QAStore(requireContext())
+        var aadapter = QAAdapter()
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-        displaymsg()
+        recyclerView.adapter = aadapter
 
-        recyclerView.adapter = QAAdapter(datalist)
+        muser.readdata.observe(viewLifecycleOwner, Observer { user->
+            aadapter.setdata(user)
+        })
+
         return view
     }
 
-    private fun displaymsg() {
-        var newcursor: Cursor? = msgs!!.getdata()
-        var newaar = ArrayList<QA>()
-        while (newcursor!!.moveToNext())
-        {
-            val q = newcursor.getString(0)
-            val a = newcursor.getString(1)
-            newaar.add(QA(q,a))
-        }
-        recyclerView.adapter = QAAdapter(newaar)
-        // Inflate the layout for this fragment
+    private fun inserttodatabase(question: String, answer: String) {
+
+        val user = user(0,question,answer)
+        muser.adduser(user)
+        Toast.makeText(context, "added", Toast.LENGTH_SHORT).show()
 
     }
     private fun getResponse(userInput: String): String {

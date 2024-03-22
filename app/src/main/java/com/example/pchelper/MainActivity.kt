@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var qbar : AutoCompleteTextView
     private lateinit var jif : ImageView
     private lateinit var submit: Button
-    private lateinit var msgs: QAStore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -62,31 +62,26 @@ class MainActivity : AppCompatActivity() {
 answer= "i dont know boss"
         submit.setOnClickListener {
             question=qbar.text.toString()
-            msgs.savedata(question, answer)
+
             data= QA(question,answer)
             datalist.add(data)
-            recyclerView.adapter = QAAdapter(datalist)
+
         }
 
 
 //  store and retrieve
-        msgs= QAStore(this)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         displaymsg()
 
-        recyclerView.adapter = QAAdapter(datalist)
+        recyclerView.adapter = QAAdapter()
     }
 
     private fun displaymsg() {
-        var newcursor: Cursor? = msgs!!.getdata()
+
         var newaar = ArrayList<QA>()
-        while (newcursor!!.moveToNext())
-        {
-            val q = newcursor.getString(0)
-            val a = newcursor.getString(1)
-            newaar.add(QA(q,a))
-        }
-        recyclerView.adapter = QAAdapter(newaar)
+
+        recyclerView.adapter = QAAdapter()
     }
 }

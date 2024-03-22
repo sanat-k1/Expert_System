@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pchelper.roomdb.user
 
-class QAAdapter(private val datalist : ArrayList<QA>): RecyclerView.Adapter<QAAdapter.ViewHolderClass>() {
+class QAAdapter: RecyclerView.Adapter<QAAdapter.ViewHolderClass>() {
+    private var userlist =  emptyList<user>()
     class ViewHolderClass(itemView: View):  RecyclerView.ViewHolder(itemView){
         val question : TextView = itemView.findViewById(R.id.name)
         val answers : TextView = itemView.findViewById(R.id.answer)
@@ -17,14 +19,20 @@ class QAAdapter(private val datalist : ArrayList<QA>): RecyclerView.Adapter<QAAd
     }
 
     override fun onBindViewHolder(holder: QAAdapter.ViewHolderClass, position: Int) {
-        var currentitem = datalist[position]
-        holder.answers.text = currentitem.Answer
-        holder.question.text = currentitem.Question
+        var currentitem = userlist[position]
+        holder.answers.text = currentitem.answer
+        holder.question.text = currentitem.question
 
     }
 
     override fun getItemCount(): Int {
-        return datalist.size
+        return userlist.size
+    }
+
+    fun setdata(user: List<user>)
+    {
+        this.userlist=user
+        notifyDataSetChanged()
     }
 
 }
